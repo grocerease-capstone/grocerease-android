@@ -10,70 +10,34 @@
     <string name="recent">Recently Added</string>
     <string name="content_image">Image View</string>
     <string name="fab_description">Floating Action Button Add.</string>
-    <string name="total_items">Total Items</string>
-    <string name="item_prices">Rp100.000,00</string>
-    <string name="item_total">100 Items</string>
-    <string name="item_date">18 November 2024</string>
-    <string name="fragment_home">Fragment Home</string>
-    <string name="fragment_expenses">Fragment Expenses</string>
-    <string name="fragment_plan">Fragment Plan</string>
-    <string name="fragment_profile">Fragment Profile</string>
+    <string name="save_list">Save List</string>
+    <string name="expenses">Expenses</string>
+    <string name="fab_scan">Scan Receipt</string>
+    <string name="fab_add_manual">Add Manual</string>
+    <string name="create_list">Create List</string>
+    <string name="input_title_list">Title</string>
+    <string name="fab_bottom_app_bar">Add list option</string>
+    <string name="item_name">Dorayaki</string>
+    <string name="category">Makanan</string>
+    <string name="quantity">"Quantity : "</string>
+    <string name="quantity_value">2 Items</string>
+    <string name="price">"Price : "</string>
+    <string name="price_value">Rp30.000,00</string>
+    <string name="delete_button">Delete button</string>
+    <string name="empty_image">Please select or capture an image</string>
+    <string name="failed_take_picture">Failed to take picture</string>
+    <string name="failed_show_camera_preview">Failed to open camera</string>
+    <string name="imageView">ImageView</string>
+    <string name="cameraSwitch">Switch camera</string>
+    <string name="permission_request_granted">Permission request granted</string>
+    <string name="permission_request_denied">Permission request denied</string>
+    <string name="app_settings">App Settings</string>
+    <string name="acc_settings">Account Settings</string>
+    <string name="plans">Plans</string>
+    <string name="theme">Theme App</string>
+    <string name="select_language">App Language</string>
+    <string name="save">Save</string>
+    <string name="scan_result">Scan Result</string>
+    <string name="next">Next</string>
 
-
-    <!-- Data dummy -->
-    <!-- String array for item_price -->
-    <string-array name="item_prices">
-        <item>100000</item>
-        <item>250000</item>
-        <item>75000</item>
-        <item>150000</item>
-        <item>300000</item>
-        <item>50000</item>
-        <item>200000</item>
-        <item>90000</item>
-        <item>500000</item>
-        <item>120000</item>
-    </string-array>
-
-    <!-- String array for item_total -->
-    <string-array name="item_totals">
-        <item>90</item>
-        <item>30</item>
-        <item>120</item>
-        <item>45</item>
-        <item>75</item>
-        <item>60</item>
-        <item>35</item>
-        <item>50</item>
-        <item>80</item>
-        <item>25</item>
-    </string-array>
-
-    <!-- String array for item_date -->
-    <string-array name="item_dates">
-        <item>18 November 2024</item>
-        <item>17 November 2024</item>
-        <item>16 November 2024</item>
-        <item>15 November 2024</item>
-        <item>14 November 2024</item>
-        <item>13 November 2024</item>
-        <item>12 November 2024</item>
-        <item>11 November 2024</item>
-        <item>10 November 2024</item>
-        <item>9 November 2024</item>
-    </string-array>
-
-    <!-- String array for item_image -->
-    <string-array name="item_images">
-        <item>@drawable/placeholder</item>
-        <item>@drawable/placeholder</item>
-        <item>@drawable/placeholder</item>
-        <item>@drawable/placeholder</item>
-        <item>@drawable/placeholder</item>
-        <item>@drawable/placeholder</item>
-        <item>@drawable/placeholder</item>
-        <item>@drawable/placeholder</item>
-        <item>@drawable/placeholder</item>
-        <item>@drawable/placeholder</item>
-    </string-array>
 </resources>
