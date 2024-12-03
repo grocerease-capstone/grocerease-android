@@ -8,28 +8,28 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.exal.grocerease.view.fragment.HomeFragment"
-        android:label="@string/fragment_home"
+        android:label=""
         tools:layout="@layout/fragment_home" >
     </fragment>
 
     <fragment
         android:id="@+id/expensesFragment"
         android:name="com.exal.grocerease.view.fragment.ExpensesFragment"
-        android:label="@string/fragment_expenses"
+        android:label=""
         tools:layout="@layout/fragment_expenses" >
     </fragment>
 
     <fragment
         android:id="@+id/planFragment"
         android:name="com.exal.grocerease.view.fragment.PlanFragment"
-        android:label="@string/fragment_plan"
+        android:label=""
         tools:layout="@layout/fragment_plan" >
     </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.exal.grocerease.view.fragment.ProfileFragment"
-        android:label="@string/fragment_profile"
+        android:label=""
         tools:layout="@layout/fragment_profile" >
     </fragment>
 

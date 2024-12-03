@@ -11,6 +11,10 @@
         <item name="android:navigationBarColor">@color/gray</item>
     </style>
 
+    <style name="RoundedSquare">
+        <item name="cornerSize">10%</item>
+    </style>
+
     <style name="ShapeAppearanceOverlayExtended" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">0dp</item>
