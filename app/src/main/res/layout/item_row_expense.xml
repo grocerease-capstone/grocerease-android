@@ -58,7 +58,7 @@
             android:layout_marginBottom="8dp"
             android:contentDescription="@string/content_image"
             android:scaleType="centerCrop"
-            android:src="@drawable/placeholder"
+            android:src="@drawable/logo_grayscale"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
