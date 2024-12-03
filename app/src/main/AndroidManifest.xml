@@ -30,6 +30,7 @@
             android:exported="false" />
         <activity
             android:name=".view.activity.IntroActivity"
+            android:noHistory="true"
             android:exported="false" />
         <activity
             android:name=".view.activity.MainActivity"
