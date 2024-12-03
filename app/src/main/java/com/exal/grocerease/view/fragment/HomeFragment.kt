@@ -40,41 +40,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        // Load data from string-array resources
-        val itemPrices = resources.getStringArray(R.array.item_prices).map { it.toInt() }
-        val itemTotals = resources.getStringArray(R.array.item_totals).map { it.toInt() }
-        val itemDates = resources.getStringArray(R.array.item_dates)
-        val itemImages = resources.obtainTypedArray(R.array.item_images)
 
-        // Prepare the data for RecyclerView
-        val itemList = mutableListOf<Item>()
-        for (i in 0 until 5) { // Ambil 5 data pertama
-            // Ambil data untuk item
-            val price = itemPrices[i]
-            val total = itemTotals[i]
-            val imageRes = itemImages.getResourceId(i, -1)
-
-            // Hitung total price dan total items
-            totalPrice += price
-            totalItem += total
-
-            itemList.add(
-                Item(
-                    itemImage = imageRes,
-                    itemPrice = price,
-                    itemTotal = total,
-                    itemDate = itemDates[i]
-                )
-            )
-        }
-        itemImages.recycle()
-
-        // Set up RecyclerView adapter
-        val adapter = RecentlyAdapter(itemList)
-        binding.itemRv.apply {
-            layoutManager = LinearLayoutManager(context)
-            this.adapter = adapter
-        }
     }
 
     override fun onDestroyView() {

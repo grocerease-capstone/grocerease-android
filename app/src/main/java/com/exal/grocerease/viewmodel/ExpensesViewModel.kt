@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.model.repository.DataRepository
-import com.exal.testapp.data.network.response.GetListResponse
+import com.exal.grocerease.model.network.response.GetListResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

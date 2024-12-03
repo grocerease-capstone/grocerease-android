@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.model.repository.DataRepository
-import com.exal.testapp.data.network.response.PostListResponse
-import com.exal.testapp.data.network.response.ProductsItem
+import com.exal.grocerease.model.network.response.PostListResponse
+import com.exal.grocerease.model.network.response.ProductsItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody

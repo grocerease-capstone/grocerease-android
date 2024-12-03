@@ -28,8 +28,8 @@ import com.exal.grocerease.helper.rupiahFormatter
 import com.exal.grocerease.model.network.response.ProductItem
 import com.exal.grocerease.view.adapter.ItemAdapter
 import com.exal.grocerease.viewmodel.CreateListViewModel
-import com.exal.testapp.data.network.response.PostListResponse
-import com.exal.testapp.data.network.response.ProductsItem
+import com.exal.grocerease.model.network.response.PostListResponse
+import com.exal.grocerease.model.network.response.ProductsItem
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

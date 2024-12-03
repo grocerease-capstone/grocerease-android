@@ -6,12 +6,8 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.exal.grocerease.R
 import com.exal.grocerease.databinding.ActivityLoginBinding
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.viewmodel.LoginViewModel

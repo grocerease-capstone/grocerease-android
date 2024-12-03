@@ -6,10 +6,10 @@ import com.exal.grocerease.helper.manager.TokenManager
 import com.exal.grocerease.hilt.helper.MlApiService
 import com.exal.grocerease.hilt.helper.RegularApiService
 import com.exal.grocerease.model.network.retrofit.ApiServices
-import com.exal.testapp.data.network.response.ExpenseListResponseItem
-import com.exal.testapp.data.network.response.GetListResponse
-import com.exal.testapp.data.network.response.PostListResponse
-import com.exal.testapp.data.network.response.ScanImageResponse
+import com.exal.grocerease.model.network.response.ExpenseListResponseItem
+import com.exal.grocerease.model.network.response.GetListResponse
+import com.exal.grocerease.model.network.response.PostListResponse
+import com.exal.grocerease.model.network.response.ScanImageResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.MultipartBody

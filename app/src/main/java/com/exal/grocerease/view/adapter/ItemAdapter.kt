@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.exal.testapp.R
-import com.exal.testapp.data.network.response.DataItem
-import com.exal.testapp.data.network.response.ProductsItem
-import com.exal.testapp.databinding.ItemExpensesItemBinding
-import com.exal.testapp.databinding.ItemRowExpenseBinding
-import com.exal.testapp.helper.DateFormatter
-import com.exal.testapp.helper.formatRupiah
+import com.exal.grocerease.R
+import com.exal.grocerease.model.network.response.DataItem
+import com.exal.grocerease.model.network.response.ProductsItem
+import com.exal.grocerease.databinding.ItemExpensesItemBinding
+import com.exal.grocerease.databinding.ItemRowExpenseBinding
+import com.exal.grocerease.helper.DateFormatter
+import com.exal.grocerease.helper.rupiahFormatter
 
 class ItemAdapter(private val onDelete: (ProductsItem) -> Unit): ListAdapter<ProductsItem, ItemAdapter.ItemViewHolder>(DIFF_CALLBACK){
 
@@ -33,7 +33,7 @@ class ItemAdapter(private val onDelete: (ProductsItem) -> Unit): ListAdapter<Pro
                 itemName.text = item.name
                 itemCategory.text = categoryMapping[item.detail?.category]
                 itemQuantity.text = item.amount.toString()
-                itemPrice.text = item.price?.let { formatRupiah(it) }
+                itemPrice.text = item.price?.let { rupiahFormatter(it) }
 
                 deleteButton.setOnClickListener {
                     onDelete(item)

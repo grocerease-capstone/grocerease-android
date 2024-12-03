@@ -11,7 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.exal.grocerease.R
 import com.exal.grocerease.databinding.ItemRowExpenseBinding
 import com.exal.grocerease.helper.rupiahFormatter
-import com.exal.testapp.data.network.response.ListsItem
+import com.exal.grocerease.model.network.response.ListsItem
 
 class ExpensesAdapter: ListAdapter<ListsItem, ExpensesAdapter.ItemViewHolder>(DIFF_CALLBACK){
 

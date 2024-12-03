@@ -1,4 +1,4 @@
-package com.exal.testapp.data.network.response
+package com.exal.grocerease.model.network.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
