@@ -3,6 +3,8 @@ package com.exal.grocerease.model.repository
 import android.util.Log
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.manager.TokenManager
+import com.exal.grocerease.hilt.helper.MlApiService
+import com.exal.grocerease.hilt.helper.RegularApiService
 import com.exal.grocerease.model.network.retrofit.ApiServices
 import com.exal.testapp.data.network.response.ExpenseListResponseItem
 import com.exal.testapp.data.network.response.GetListResponse
@@ -16,7 +18,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DataRepository @Inject constructor(private val apiService: ApiServices, private val tokenManager: TokenManager) {
+class DataRepository @Inject constructor(@RegularApiService private val apiService: ApiServices, @MlApiService private val apiServiceML: ApiServices, private val tokenManager: TokenManager) {
 
     fun login(username: String, password: String): Flow<Resource<Boolean>> = flow {
         emit(Resource.Loading()) // Emit loading state

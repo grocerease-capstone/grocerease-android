@@ -8,4 +8,5 @@
     <color name="navIndicator">#555555</color>
     <color name="text">#141118</color>
     <color name="splash_screen_background">#13181C</color>
+    <color name="grayLight">#424242</color>
 </resources>
