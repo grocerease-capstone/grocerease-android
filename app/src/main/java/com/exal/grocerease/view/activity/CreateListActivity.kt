@@ -25,11 +25,11 @@ import com.exal.grocerease.R
 import com.exal.grocerease.databinding.ActivityCreateListBinding
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.rupiahFormatter
+import com.exal.grocerease.model.network.response.PostListResponse
 import com.exal.grocerease.model.network.response.ProductItem
+import com.exal.grocerease.model.network.response.ProductsItem
 import com.exal.grocerease.view.adapter.ItemAdapter
 import com.exal.grocerease.viewmodel.CreateListViewModel
-import com.exal.grocerease.model.network.response.PostListResponse
-import com.exal.grocerease.model.network.response.ProductsItem
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -37,7 +37,6 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import org.opencv.android.CameraActivity
 import java.io.File
 
 @AndroidEntryPoint

@@ -28,7 +28,7 @@ class ExpensesAdapter: ListAdapter<ListsItem, ExpensesAdapter.ItemViewHolder>(DI
                 .load(item.image)
                 .apply(
                     RequestOptions.placeholderOf(R.drawable.placeholder)
-                        .error(R.drawable.ic_close)
+                        .error(R.drawable.logo_grayscale)
                 )
                 .into(binding.itemImage)
         }
