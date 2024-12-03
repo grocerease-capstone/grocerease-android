@@ -1,13 +1,13 @@
 package com.exal.grocerease.model.network.retrofit
 
-import com.exal.testapp.data.network.response.ExpenseListResponseItem
-import com.exal.testapp.data.network.response.GetListResponse
-import com.exal.testapp.data.network.response.LoginResponse
-import com.exal.testapp.data.network.response.LogoutResponse
-import com.exal.testapp.data.network.response.PostListResponse
-import com.exal.testapp.data.network.response.RegisterResponse
-import com.exal.testapp.data.network.response.ResultListResponseItem
-import com.exal.testapp.data.network.response.ScanImageResponse
+import com.exal.grocerease.model.network.response.ExpenseListResponseItem
+import com.exal.grocerease.model.network.response.GetListResponse
+import com.exal.grocerease.model.network.response.LoginResponse
+import com.exal.grocerease.model.network.response.LogoutResponse
+import com.exal.grocerease.model.network.response.PostListResponse
+import com.exal.grocerease.model.network.response.RegisterResponse
+import com.exal.grocerease.model.network.response.ResultListResponseItem
+import com.exal.grocerease.model.network.response.ScanImageResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Field
