@@ -74,6 +74,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.exifinterface)
 
     // Compose Stuff lib
     implementation("androidx.activity:activity-compose:1.9.3")
@@ -103,4 +104,12 @@ dependencies {
     // Hilt lib
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
+
+    // cameraX lib
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.camera.lifecycle)
+    implementation(libs.camera.view)
+
+    // Glide lib
+    implementation(libs.glide)
 }
