@@ -33,7 +33,8 @@ class CreateListViewModel @Inject constructor(private val dataRepository: DataRe
         productItems: RequestBody,
         type: RequestBody,
         totalExpenses: RequestBody,
-        totalItems: RequestBody
+        totalItems: RequestBody,
+        boughtAt: RequestBody,
     ): Flow<Resource<PostListResponse>> = dataRepository.postData(
         title,
         receiptImage,
@@ -41,7 +42,8 @@ class CreateListViewModel @Inject constructor(private val dataRepository: DataRe
         productItems,
         type,
         totalExpenses,
-        totalItems
+        totalItems,
+        boughtAt
     )
 
     private val _imageUri = MutableLiveData<String>()
@@ -55,6 +57,15 @@ class CreateListViewModel @Inject constructor(private val dataRepository: DataRe
     fun deleteProduct(item: ProductsItem) {
         val currentList = _productList.value.orEmpty().toMutableList()
         currentList.remove(item)
+        _productList.value = currentList
+
+        val newTotalPrice = currentList.sumOf { (it.price ?: 0) * (it.amount ?: 0) }
+        _totalPrice.value = newTotalPrice
+    }
+
+    fun addProduct(product: ProductsItem) {
+        val currentList = _productList.value.orEmpty().toMutableList()
+        currentList.add(product)
         _productList.value = currentList
 
         val newTotalPrice = currentList.sumOf { (it.price ?: 0) * (it.amount ?: 0) }

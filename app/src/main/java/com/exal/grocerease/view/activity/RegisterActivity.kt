@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
+import com.exal.grocerease.R
 import com.exal.grocerease.databinding.ActivityRegisterBinding
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.viewmodel.RegisterViewModel
