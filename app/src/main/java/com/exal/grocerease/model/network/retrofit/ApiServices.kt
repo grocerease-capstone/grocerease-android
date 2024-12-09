@@ -1,5 +1,6 @@
 package com.exal.grocerease.model.network.retrofit
 
+import com.exal.grocerease.model.network.response.DetailListResponse
 import com.exal.grocerease.model.network.response.ExpenseListResponseItem
 import com.exal.grocerease.model.network.response.GetListResponse
 import com.exal.grocerease.model.network.response.LoginResponse
@@ -17,15 +18,10 @@ import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiServices {
-    @GET("/expense-lists")
-    suspend fun getExpensesList(@Query("id_user") id: String): List<ExpenseListResponseItem>
-
-    @GET("/expense-detail")
-    suspend fun getResultList(@Query("list_id") id: String): List<ResultListResponseItem>
-
     @FormUrlEncoded
     @POST("/auth/login")
     suspend fun login(
@@ -33,13 +29,14 @@ interface ApiServices {
         @Field("password") password: String
     ): LoginResponse
 
-    @FormUrlEncoded
+    @Multipart
     @POST("/auth/register")
     suspend fun register(
-        @Field("username") name: String,
-        @Field("email") email: String,
-        @Field("password") password: String,
-        @Field("passwordRepeat") passwordRepeat: String
+        @Part("username") name: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("password") password: RequestBody,
+        @Part("password_repeat") passwordRepeat: RequestBody,
+        @Part profileImage: MultipartBody.Part
     ): RegisterResponse
 
     @POST("/auth/logout")
@@ -63,12 +60,31 @@ interface ApiServices {
         @Part("product_items") productItems: RequestBody,
         @Part("type") type: RequestBody,
         @Part("total_expenses") totalExpenses: RequestBody,
-        @Part("total_items") totalItems: RequestBody
+        @Part("total_items") totalItems: RequestBody,
+        @Part("boughtAt") boughtAt: RequestBody
     ): PostListResponse
 
     @GET("/list")
     suspend fun getExpenseList(
         @Header("Authorization") token: String,
-        @Query("type") type: String = "Track"
+        @Query("type") type: String,
+        @Query("page") page: Int = 1,
+        @Query("limit") limit: Int = 10
+    ): GetListResponse
+
+    @GET("/list/{id}")
+    suspend fun getExpensesDetail(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): DetailListResponse
+
+    @GET("/list/filter")
+    suspend fun getExpensesMonth(
+        @Header("Authorization") token: String,
+        @Query("type") type: String = "Track",
+        @Query("month") month: Int,
+        @Query("year") year: Int,
+        @Query("page") page: Int = 1,
+        @Query("limit") limit: Int = 10
     ): GetListResponse
 }

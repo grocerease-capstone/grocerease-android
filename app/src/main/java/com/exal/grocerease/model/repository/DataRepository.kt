@@ -1,15 +1,24 @@
 package com.exal.grocerease.model.repository
 
 import android.util.Log
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.manager.TokenManager
 import com.exal.grocerease.hilt.helper.MlApiService
 import com.exal.grocerease.hilt.helper.RegularApiService
+import com.exal.grocerease.model.db.AppDatabase
+import com.exal.grocerease.model.db.entities.ListEntity
+import com.exal.grocerease.model.network.response.DetailListResponse
 import com.exal.grocerease.model.network.retrofit.ApiServices
 import com.exal.grocerease.model.network.response.ExpenseListResponseItem
 import com.exal.grocerease.model.network.response.GetListResponse
 import com.exal.grocerease.model.network.response.PostListResponse
 import com.exal.grocerease.model.network.response.ScanImageResponse
+import com.exal.grocerease.model.remotemediator.FiveItemRemoteMediator
+import com.exal.grocerease.model.remotemediator.ListRemoteMediator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.MultipartBody
@@ -18,7 +27,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class DataRepository @Inject constructor(@RegularApiService private val apiService: ApiServices, @MlApiService private val apiServiceML: ApiServices, private val tokenManager: TokenManager) {
+class DataRepository @Inject constructor(
+    @RegularApiService private val apiService: ApiServices,
+    @MlApiService private val apiServiceML: ApiServices,
+    private val tokenManager: TokenManager,
+    private val database: AppDatabase
+) {
 
     fun login(username: String, password: String): Flow<Resource<Boolean>> = flow {
         emit(Resource.Loading()) // Emit loading state
@@ -40,10 +54,16 @@ class DataRepository @Inject constructor(@RegularApiService private val apiServi
         }
     }
 
-    fun register(name: String, email: String, password: String, passwordRepeat: String): Flow<Resource<Boolean>> = flow {
+    fun register(
+        name: RequestBody,
+        email: RequestBody,
+        password: RequestBody,
+        passwordRepeat: RequestBody,
+        profileImage: MultipartBody.Part
+    ): Flow<Resource<Boolean>> = flow {
         emit(Resource.Loading())
         try {
-            val response = apiService.register(name, email, password, passwordRepeat)
+            val response = apiService.register(name, email, password, passwordRepeat, profileImage)
             if (response.status == true) {
                 emit(Resource.Success(true))
             } else {
@@ -99,7 +119,8 @@ class DataRepository @Inject constructor(@RegularApiService private val apiServi
         productItems: RequestBody,
         type: RequestBody,
         totalExpenses: RequestBody,
-        totalItems: RequestBody
+        totalItems: RequestBody,
+        boughtAt: RequestBody
     ): Flow<Resource<PostListResponse>> = flow {
         emit(Resource.Loading())
         try {
@@ -111,7 +132,8 @@ class DataRepository @Inject constructor(@RegularApiService private val apiServi
                 productItems,
                 type,
                 totalExpenses,
-                totalItems
+                totalItems,
+                boughtAt
             )
             emit(Resource.Success(response))
         } catch (e: Exception) {
@@ -119,13 +141,60 @@ class DataRepository @Inject constructor(@RegularApiService private val apiServi
         }
     }
 
-    fun getExpenseList(): Flow<Resource<GetListResponse>> = flow {
+    fun getExpensesDetail(id: Int): Flow<Resource<DetailListResponse>> = flow {
         emit(Resource.Loading())
         try {
-            val response = apiService.getExpenseList("Bearer: ${tokenManager.getToken()}")
+            val response = apiService.getExpensesDetail("Bearer: ${tokenManager.getToken()}", id)
             emit(Resource.Success(response))
+        } catch (exception: Exception) {
+            emit(Resource.Error(exception.message ?: "Error fetching data"))
+        }
+    }
+
+
+    @OptIn(ExperimentalPagingApi::class)
+    fun getListData(type: String, month: Int?, year: Int?): Flow<PagingData<ListEntity>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10),
+            remoteMediator = ListRemoteMediator(
+                type = type,
+                month = month,
+                year = year,
+                token = "${tokenManager.getToken()}",
+                apiService = apiService,
+                database = database
+            ),
+            pagingSourceFactory = {
+                val data = database.listDao().getListsByType(type)
+                return@Pager data
+            }
+        ).flow
+    }
+
+    @OptIn(ExperimentalPagingApi::class)
+    fun getFiveListData(type: String): Flow<PagingData<ListEntity>> {
+        return Pager(
+            config = PagingConfig(pageSize = 5),
+            remoteMediator = FiveItemRemoteMediator(
+                type = type,
+                token = "${tokenManager.getToken()}",
+                apiService = apiService,
+                database = database
+            ),
+            pagingSourceFactory = {
+                database.listDao().getFiveLatestData(type)
+            }
+        ).flow
+    }
+
+    fun deleteAllDatabaseData(): Flow<Resource<Boolean>> = flow {
+        emit(Resource.Loading())
+        try {
+            database.listDao().clearAll()
+            database.remoteKeysDao().clearRemoteKeys()
+            emit(Resource.Success(true))
         } catch (e: Exception) {
-            emit(Resource.Error(e.message ?: "Error fetching expense list")) // Emit error if something goes wrong
+            emit(Resource.Error(e.message ?: "Error deleting data"))
         }
     }
 }

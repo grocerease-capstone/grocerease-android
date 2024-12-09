@@ -23,6 +23,9 @@ data class ProductsItem(
 	@field:SerializedName("price")
 	val price: Int? = null,
 
+	@field:SerializedName("probability")
+	val probability: Double? = null,
+
 	@field:SerializedName("name")
 	val name: String? = null,
 
@@ -36,8 +39,8 @@ data class Detail(
 	@field:SerializedName("type")
 	val type: String? = null,
 
-	@field:SerializedName("category")
-	val category: String? = null,
+	@field:SerializedName("category_index")
+	val categoryIndex: Int? = null,
 
 	@field:SerializedName("category_probability")
 	val categoryProbability: Double? = null

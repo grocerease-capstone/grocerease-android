@@ -1,4 +1,4 @@
-package com.exal.grocerease.model.network.response
+package com.exal.grocerease.model.network.request
 
 data class ProductItem(
     val name: String?,
