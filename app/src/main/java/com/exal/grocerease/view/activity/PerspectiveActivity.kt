@@ -3,6 +3,8 @@ package com.exal.grocerease.view.activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -63,6 +65,10 @@ class PerspectiveActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
+
         binding.transformBtn.setOnClickListener {
             val points = binding.edtView.getPerspective()
             if (points == null || !viewModel.isValidPoints(points)) {
@@ -80,7 +86,7 @@ class PerspectiveActivity : AppCompatActivity() {
 
             viewModel.transformedBitmap.observe(this) { transformedBitmap ->
                 if (transformedBitmap != null) {
-                    binding.imageView.setImageBitmap(transformedBitmap)
+                    binding.imageView.setImageBitmap(transformedBitmap) // Display transformed image
                     showSnackbar("Transformasi selesai!")
                 } else {
                     showSnackbar("Transformasi gagal!")
@@ -116,8 +122,10 @@ class PerspectiveActivity : AppCompatActivity() {
                 is Resource.Loading -> {
                     showLoading(true)
                     showSnackbar("Memindai gambar...")
+                    binding.root.foreground = ColorDrawable(Color.parseColor("#80000000"))
                 }
                 is Resource.Success -> {
+                    resetUIState()
                     val scanResponse = resource.data
                     if (scanResponse != null) {
                         showLoading(false)
@@ -129,6 +137,7 @@ class PerspectiveActivity : AppCompatActivity() {
                     }
                 }
                 is Resource.Error -> {
+                    resetUIState()
                     showLoading(false)
                     Log.d("PerspectiveActivity", "Error: ${resource.message}")
                     showSnackbar("Gagal memindai: ${resource.message}")
@@ -205,6 +214,10 @@ class PerspectiveActivity : AppCompatActivity() {
         Snackbar.make(binding.perspectiveActivity, message, Snackbar.LENGTH_LONG)
             .setAnchorView(binding.nextBtn)
             .show()
+    }
+
+    private fun resetUIState() {
+        binding.root.foreground = null
     }
 
     companion object {
