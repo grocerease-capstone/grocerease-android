@@ -15,6 +15,7 @@ import com.exal.grocerease.R
 import com.exal.grocerease.databinding.ActivityDetailExpenseBinding
 import com.exal.grocerease.helper.DateFormatter
 import com.exal.grocerease.helper.rupiahFormatter
+import com.exal.grocerease.view.adapter.DetailExpenseAdapter
 import com.exal.grocerease.viewmodel.DetailExpenseViewModel
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
