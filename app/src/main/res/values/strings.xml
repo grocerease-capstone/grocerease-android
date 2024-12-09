@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">testApp</string>
+    <string name="app_name">GrocerEase</string>
     <string name="home">Home</string>
     <string name="profile">Profile</string>
 
@@ -48,5 +48,6 @@
     <string name="today">Today</string>
     <string name="edit_list">Edit List</string>
     <string name="save_changes">Save Changes</string>
+    <string name="retry">Retry</string>
 
 </resources>

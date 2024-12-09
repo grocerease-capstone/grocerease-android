@@ -47,6 +47,10 @@ class CameraActivity : AppCompatActivity() {
             startCamera()
         }
 
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
+
         binding.flashCamera.setOnClickListener {
             toggleFlashMode()
         }
