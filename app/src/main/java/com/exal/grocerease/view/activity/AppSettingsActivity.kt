@@ -7,9 +7,12 @@ import android.widget.AdapterView
 import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.graphics.drawable.DrawableCompat.applyTheme
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.exal.grocerease.databinding.BottomSheetLanguageBinding
 import com.exal.grocerease.databinding.BottomSheetThemeBinding
 import com.exal.grocerease.helper.manager.ThemeManager
@@ -23,7 +26,13 @@ class AppSettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAppSettingsBinding.inflate(layoutInflater)
+        enableEdgeToEdge()
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         val menuItemsApp = listOf(
             MenuItemApp("Theme", R.drawable.ic_theme),
