@@ -31,11 +31,12 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            isMinifyEnabled = true
+            isShrinkResources = true
         }
     }
 
@@ -113,4 +114,18 @@ dependencies {
 
     // Glide lib
     implementation(libs.glide)
+
+    // Room lib
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
+
+    // Datastore lib
+    implementation(libs.androidx.datastore.preferences)
+
+    // Paging3
+    implementation(libs.androidx.paging.runtime.ktx)
+    testImplementation(libs.androidx.paging.testing)
+    testImplementation(libs.androidx.paging.common.ktx)
 }
