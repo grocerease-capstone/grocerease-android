@@ -26,7 +26,7 @@ import com.exal.grocerease.databinding.ActivityCreateListBinding
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.rupiahFormatter
 import com.exal.grocerease.model.network.response.PostListResponse
-import com.exal.grocerease.model.network.response.ProductItem
+import com.exal.grocerease.model.network.request.ProductItem
 import com.exal.grocerease.model.network.response.ProductsItem
 import com.exal.grocerease.view.adapter.ItemAdapter
 import com.exal.grocerease.viewmodel.CreateListViewModel
