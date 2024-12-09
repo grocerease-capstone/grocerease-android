@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="iconButton">#E6E6E6</color>
-    <color name="cardColor">#454545</color>
+    <color name="cardColor">#4E4E4E</color>
     <color name="navColor">#313131</color>
+    <color name="totalColor">#313131</color>
     <color name="navIconColor">#E6E6E6</color>
     <color name="textGradient">#FFFFFF</color>
     <color name="navIndicator">#555555</color>
     <color name="text">#141118</color>
     <color name="splash_screen_background">#13181C</color>
-    <color name="grayLight">#424242</color>
 </resources>

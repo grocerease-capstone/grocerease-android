@@ -15,12 +15,12 @@
     <color name="greenLight">#CEE8BF</color>
     <color name="green">#97CD78</color>
     <color name="font">#141118</color>
-    <color name="grayLight">#424242</color>
 
     <!--    Support Dark Mode-->
-    <color name="iconButton">#0B0B0B</color>
+    <color name="iconButton">#48444D</color>
     <color name="cardColor">#EFEFEF</color>
     <color name="navColor">#F4F4F4</color>
+    <color name="totalColor">#FFFFFF</color>
     <color name="navIconColor">#0B0B0B</color>
     <color name="textGradient">#141118</color>
     <color name="navIndicator">#19555555</color>

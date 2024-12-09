@@ -1,18 +1,19 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.GrocerEase" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+<resources>
+    <style name="Base.Theme.TestApp" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/BlueLight</item>
         <item name="colorOnPrimary">@color/gray</item>
         <item name="colorSecondary">@color/BlueLight</item>
         <item name="colorOnSecondary">@color/gray</item>
-        <item name="android:statusBarColor">@color/grayLight</item>
+        <item name="android:statusBarColor">#424242</item>
         <item name="android:navigationBarColor">@color/gray</item>
     </style>
 
-    <style name="RoundedSquare">
-        <item name="cornerSize">10%</item>
+    <style name="Theme.TestApp.Icon" parent="Base.Theme.TestApp" >
+        <item name="icon">@color/white</item>
+    </style>
+
+    <style name="Theme.TestApp.SplashScreen" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorOnBackground">@color/splash_screen_background</item>
     </style>
 
     <style name="ShapeAppearanceOverlayExtended" parent="">
@@ -24,7 +25,7 @@
         <item name="cornerSizeBottomLeft">100%</item>
     </style>
 
-    <style name="Theme.GrocerEase.Icon" parent="Base.Theme.GrocerEase">
-        <item name="icon">@color/white</item>
+    <style name="RoundedSquare">
+        <item name="cornerSize">10%</item>
     </style>
 </resources>
