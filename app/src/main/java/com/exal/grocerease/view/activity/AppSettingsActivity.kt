@@ -1,18 +1,14 @@
 package com.exal.grocerease.view.activity
 
-import com.exal.grocerease.R
-import com.exal.grocerease.databinding.ActivityAppSettingsBinding
 import android.os.Bundle
 import android.widget.AdapterView
-import android.widget.Button
-import android.widget.RadioGroup
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.graphics.drawable.DrawableCompat.applyTheme
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.exal.grocerease.R
+import com.exal.grocerease.databinding.ActivityAppSettingsBinding
 import com.exal.grocerease.databinding.BottomSheetLanguageBinding
 import com.exal.grocerease.databinding.BottomSheetThemeBinding
 import com.exal.grocerease.helper.manager.ThemeManager
