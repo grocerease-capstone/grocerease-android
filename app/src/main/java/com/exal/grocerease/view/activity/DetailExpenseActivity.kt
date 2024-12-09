@@ -46,11 +46,14 @@ class DetailExpenseActivity : AppCompatActivity() {
         val expenseDate = intent.getStringExtra(EXTRA_EXPENSE_DATE).toString()
         val expenseType = intent.getStringExtra(EXTRA_EXPENSE_TYPE)
 
-        if (expenseType == "Detail Plan") {
+        var titleText = "Detail Expense"
+
+        if (expenseType == "Plan") {
+            titleText = "Detail Plan"
             binding.cardImage.visibility = View.GONE
             binding.shareBtn.visibility = View.GONE
         }
-        binding.activityTxt.text = expenseType
+        binding.activityTxt.text = titleText
 
         binding.dateTv.text = DateFormatter.localizeDate(expenseDate ?: "")
 
@@ -71,7 +74,7 @@ class DetailExpenseActivity : AppCompatActivity() {
         binding.titleTv.text = expenseTitle
 
         binding.editBtn.setOnClickListener {
-            navigateToEditListDetail()
+            navigateToEditListDetail(expenseType)
         }
 
         binding.shareBtn.setOnClickListener {
@@ -79,13 +82,20 @@ class DetailExpenseActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToEditListDetail() {
+    private fun navigateToEditListDetail(type: String?) {
         val intent = Intent(this, EditListDetailActivity::class.java)
         intent.putExtra(EditListDetailActivity.EXTRA_EXPENSE_ID, listId)
         intent.putExtra(EditListDetailActivity.EXTRA_EXPENSE_TITLE, expenseTitle)
+        intent.putExtra("list_type", type)
 
         val detailItems = viewModel.productList.value?.data?.data?.detailItems.orEmpty()
+        val detailItems2 = detailItems.forEach {
+            Log.d("DetailExpenseActivity", "Detail Item: ${it.toString()}")
+            it?.category?.toInt()
+        }
+        Log.d("DetailExpenseActivity", "Detail Items: ${detailItems2}")
         val jsonList = Gson().toJson(detailItems)
+        Log.d("DetailExpenseActivity", "JSON List: $jsonList")
         intent.putExtra(EditListDetailActivity.EXTRA_DETAIL_LIST, jsonList)
 
         startActivity(intent)

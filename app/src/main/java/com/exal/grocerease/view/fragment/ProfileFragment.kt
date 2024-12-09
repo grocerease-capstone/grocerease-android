@@ -2,6 +2,7 @@ package com.exal.grocerease.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -68,23 +69,22 @@ class ProfileFragment : Fragment() {
                 }
                 2 -> {
                     viewModel.logout()
-                    tokenManager.clearToken()
                     logoutObserver()
                 }
             }
         }
 
-        // Set content for ComposeView
         binding.composeView.setContent {
             MaterialTheme {
                 LineSample(viewModel)
             }
         }
 
-        // Setup for calendar button
         binding.calendarButton.setOnClickListener {
             MonthYearPickerDialog(requireContext()) { month, year ->
                 val monthName = DateFormatSymbols().months[month]
+                val monthValue = month + 1
+                Log.d("month", "Bulan saat ini : $month  ||  $monthValue")
                 binding.dateTxt.text = "$monthName $year"
             }.show()
         }
@@ -103,6 +103,8 @@ class ProfileFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
+                    tokenManager.clearToken()
+                    viewModel.clearDatabase()
                     val intent = Intent(requireContext(), LandingActivity::class.java)
                     startActivity(intent)
                     requireActivity().finish()

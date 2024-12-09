@@ -7,11 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.exal.grocerease.R
-import com.exal.grocerease.databinding.FragmentExpensesBinding
 import com.exal.grocerease.databinding.FragmentPlanBinding
 import com.exal.grocerease.helper.MonthYearPickerDialog
 import com.exal.grocerease.view.activity.CreatePlanActivity
@@ -19,15 +16,8 @@ import com.exal.grocerease.view.activity.DetailExpenseActivity
 import com.exal.grocerease.view.adapter.LoadingStateAdapter
 import com.exal.grocerease.view.adapter.PlanAdapter
 import com.exal.grocerease.viewmodel.PlanViewModel
-import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.DateValidatorPointForward
-import com.google.android.material.datepicker.MaterialDatePicker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.text.DateFormatSymbols
-import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatterBuilder
-import java.util.Locale
 
 @AndroidEntryPoint
 class PlanFragment : Fragment() {
@@ -85,7 +75,7 @@ class PlanFragment : Fragment() {
 
     private fun navigateToDetail(id: Int, title: String, date: String) {
         val intent = Intent(requireContext(), DetailExpenseActivity::class.java)
-        val type = "Detail Plan"
+        val type = "Plan"
         intent.putExtra(DetailExpenseActivity.EXTRA_EXPENSE_ID, id)
         intent.putExtra(DetailExpenseActivity.EXTRA_EXPENSE_TITLE, title)
         intent.putExtra(DetailExpenseActivity.EXTRA_EXPENSE_DATE, date)

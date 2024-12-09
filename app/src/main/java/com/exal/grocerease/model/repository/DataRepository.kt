@@ -17,6 +17,7 @@ import com.exal.grocerease.model.network.response.ExpenseListResponseItem
 import com.exal.grocerease.model.network.response.GetListResponse
 import com.exal.grocerease.model.network.response.PostListResponse
 import com.exal.grocerease.model.network.response.ScanImageResponse
+import com.exal.grocerease.model.network.response.UpdateListResponse
 import com.exal.grocerease.model.remotemediator.FiveItemRemoteMediator
 import com.exal.grocerease.model.remotemediator.ListRemoteMediator
 import kotlinx.coroutines.flow.Flow
@@ -195,6 +196,16 @@ class DataRepository @Inject constructor(
             emit(Resource.Success(true))
         } catch (e: Exception) {
             emit(Resource.Error(e.message ?: "Error deleting data"))
+        }
+    }
+
+    fun updateList(id:Int, title: RequestBody, productItems: RequestBody, type: RequestBody, totalExpenses: RequestBody, totalItems: RequestBody): Flow<Resource<UpdateListResponse>> = flow {
+        emit(Resource.Loading())
+        try {
+            val response = apiService.updateList("Bearer: ${tokenManager.getToken()}", id, title, productItems, type, totalExpenses, totalItems)
+            emit(Resource.Success(response))
+        } catch (exception: Exception) {
+            emit(Resource.Error(exception.message ?: "Error fetching data"))
         }
     }
 }

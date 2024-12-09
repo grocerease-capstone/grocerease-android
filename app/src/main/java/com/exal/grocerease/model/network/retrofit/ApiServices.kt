@@ -9,6 +9,7 @@ import com.exal.grocerease.model.network.response.PostListResponse
 import com.exal.grocerease.model.network.response.RegisterResponse
 import com.exal.grocerease.model.network.response.ResultListResponseItem
 import com.exal.grocerease.model.network.response.ScanImageResponse
+import com.exal.grocerease.model.network.response.UpdateListResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Field
@@ -17,6 +18,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -87,4 +89,16 @@ interface ApiServices {
         @Query("page") page: Int = 1,
         @Query("limit") limit: Int = 10
     ): GetListResponse
+
+    @Multipart
+    @PUT("/list/{id}")
+    suspend fun updateList(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+        @Part("title") title: RequestBody,
+        @Part("product_items") productItems: RequestBody,
+        @Part("type") type: RequestBody,
+        @Part("total_expenses") totalExpenses: RequestBody,
+        @Part("total_items") totalItems: RequestBody
+    ): UpdateListResponse
 }
