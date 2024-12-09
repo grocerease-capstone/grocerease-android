@@ -16,6 +16,7 @@ import com.exal.grocerease.R
 import com.exal.grocerease.databinding.FragmentProfileBinding
 import com.exal.grocerease.helper.MonthYearPickerDialog
 import com.exal.grocerease.helper.Resource
+import com.exal.grocerease.helper.compose.LineSample
 import com.exal.grocerease.helper.manager.TokenManager
 import com.exal.grocerease.view.activity.AppSettingsActivity
 import com.exal.grocerease.view.activity.LandingActivity
@@ -74,11 +75,11 @@ class ProfileFragment : Fragment() {
         }
 
         // Set content for ComposeView
-//        binding.composeView.setContent {
-//            MaterialTheme {
-//                LineSample()
-//            }
-//        }
+        binding.composeView.setContent {
+            MaterialTheme {
+                LineSample(viewModel)
+            }
+        }
 
         // Setup for calendar button
         binding.calendarButton.setOnClickListener {
