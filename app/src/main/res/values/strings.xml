@@ -49,5 +49,6 @@
     <string name="edit_list">Edit List</string>
     <string name="save_changes">Save Changes</string>
     <string name="retry">Retry</string>
+    <string name="edit_button">Edit button</string>
 
 </resources>
