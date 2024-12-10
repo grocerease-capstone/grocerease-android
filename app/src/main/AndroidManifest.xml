@@ -22,6 +22,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".view.activity.AccountSettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activity.EditListDetailActivity"
             android:exported="false" />
         <activity

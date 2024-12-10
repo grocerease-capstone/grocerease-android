@@ -50,5 +50,6 @@
     <string name="save_changes">Save Changes</string>
     <string name="retry">Retry</string>
     <string name="edit_button">Edit button</string>
+    <string name="account_settings">Account Setting</string>
 
 </resources>
