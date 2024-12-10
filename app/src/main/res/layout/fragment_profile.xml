@@ -23,7 +23,7 @@
             android:layout_height="wrap_content">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circleImageView"
+                android:id="@+id/profileImage"
                 android:layout_width="210dp"
                 android:layout_height="210dp"
                 android:layout_marginTop="32dp"
@@ -53,10 +53,10 @@
                 app:tint="@color/iconButton"
                 app:iconGravity="textStart"
                 app:layout_constraintEnd_toEndOf="@+id/composeView"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintTop_toBottomOf="@+id/email" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -65,18 +65,18 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+                app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="johndoe@gmail.com"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/textView2"
-                app:layout_constraintStart_toStartOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintEnd_toEndOf="@+id/username"
+                app:layout_constraintStart_toStartOf="@+id/username"
+                app:layout_constraintTop_toBottomOf="@+id/username" />
 
             <androidx.compose.ui.platform.ComposeView
                 android:id="@+id/composeView"

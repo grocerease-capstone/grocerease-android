@@ -13,12 +13,15 @@ import androidx.appcompat.view.menu.MenuAdapter
 import androidx.compose.material3.MaterialTheme
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.exal.grocerease.R
 import com.exal.grocerease.databinding.FragmentProfileBinding
 import com.exal.grocerease.helper.MonthYearPickerDialog
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.compose.LineSample
 import com.exal.grocerease.helper.manager.TokenManager
+import com.exal.grocerease.view.activity.AccountSettingsActivity
 import com.exal.grocerease.view.activity.AppSettingsActivity
 import com.exal.grocerease.view.activity.LandingActivity
 import com.exal.grocerease.view.adapter.MenuItem
@@ -51,6 +54,10 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentProfileBinding.bind(view)
 
+        viewModel.getAccount()
+
+        observeAccount()
+
         val menuItems = listOf(
             MenuItem("Account Settings", R.drawable.ic_account_settings),
             MenuItem("App Setting", R.drawable.ic_setting),
@@ -62,7 +69,10 @@ class ProfileFragment : Fragment() {
 
         binding.listViewMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             when (position) {
-                0 -> Toast.makeText(requireContext(), "Account Settings clicked", Toast.LENGTH_SHORT).show()
+                0 -> {
+                    val intent = Intent(requireContext(), AccountSettingsActivity::class.java)
+                    startActivity(intent)
+                }
                 1 -> {
                     val intent = Intent(requireContext(), AppSettingsActivity::class.java)
                     startActivity(intent)
@@ -93,6 +103,20 @@ class ProfileFragment : Fragment() {
 //            val intent = Intent(requireContext(), AppSettingsActivity::class.java)
 //            startActivity(intent)
 //        }
+    }
+
+    private fun observeAccount() {
+        viewModel.accountData.observe(requireActivity()){
+            binding.username.text = it.data?.data?.userProfile?.username
+            binding.email.text = it.data?.data?.userProfile?.email
+            Glide.with(requireContext())
+                .load(it.data?.data?.userProfile?.image)
+                .apply(
+                    RequestOptions.placeholderOf(R.drawable.placeholder)
+                        .error(R.drawable.ic_close)
+                )
+                .into(binding.profileImage)
+        }
     }
 
     private fun logoutObserver() {

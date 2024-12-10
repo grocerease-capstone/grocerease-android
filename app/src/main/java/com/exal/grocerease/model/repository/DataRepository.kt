@@ -14,6 +14,7 @@ import com.exal.grocerease.model.db.entities.ListEntity
 import com.exal.grocerease.model.network.response.DetailListResponse
 import com.exal.grocerease.model.network.retrofit.ApiServices
 import com.exal.grocerease.model.network.response.ExpenseListResponseItem
+import com.exal.grocerease.model.network.response.GetAccountResponse
 import com.exal.grocerease.model.network.response.GetListResponse
 import com.exal.grocerease.model.network.response.PostListResponse
 import com.exal.grocerease.model.network.response.ScanImageResponse
@@ -206,6 +207,16 @@ class DataRepository @Inject constructor(
                 return@Pager data
             }
         ).flow
+    }
+
+    fun getAccount(): Flow<Resource<GetAccountResponse>> = flow {
+        emit(Resource.Loading())
+        try {
+            val response = apiService.getAccount("Bearer: ${tokenManager.getToken()}")
+            emit(Resource.Success(response))
+        } catch (exception: Exception) {
+            emit(Resource.Error(exception.message ?: "Error fetching data"))
+        }
     }
 
     fun deleteAllDatabaseData(): Flow<Resource<Boolean>> = flow {

@@ -2,6 +2,7 @@ package com.exal.grocerease.model.network.retrofit
 
 import com.exal.grocerease.model.network.response.DetailListResponse
 import com.exal.grocerease.model.network.response.ExpenseListResponseItem
+import com.exal.grocerease.model.network.response.GetAccountResponse
 import com.exal.grocerease.model.network.response.GetListResponse
 import com.exal.grocerease.model.network.response.LoginResponse
 import com.exal.grocerease.model.network.response.LogoutResponse
@@ -108,4 +109,10 @@ interface ApiServices {
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): PostListResponse
+
+    @GET("/user")
+    suspend fun getAccount(
+        @Header("Authorization") token: String
+    ): GetAccountResponse
+
 }
