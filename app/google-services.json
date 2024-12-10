@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "407517281668",
+    "project_id": "grocerease-capstone-project",
+    "storage_bucket": "grocerease-capstone-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:407517281668:android:91a66549c3dff7e69ef1d1",
+        "android_client_info": {
+          "package_name": "com.exal.grocerease"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9KgTvBH_2SqTf1YzwdD7EFPpb2nMMXG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

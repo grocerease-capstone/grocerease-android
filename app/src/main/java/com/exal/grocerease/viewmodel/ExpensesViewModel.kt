@@ -11,6 +11,8 @@ import com.exal.grocerease.model.db.entities.ListEntity
 import com.exal.grocerease.model.repository.DataRepository
 import com.exal.grocerease.model.network.response.GetListResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,9 +23,22 @@ class ExpensesViewModel @Inject constructor(private val dataRepository: DataRepo
     private val _expenses = MutableLiveData<PagingData<ListEntity>>()
     val expenses: LiveData<PagingData<ListEntity>> get() = _expenses
 
-    fun getLists(type: String, month: Int?, year: Int?) {
+    private val _toastEvent = MutableSharedFlow<String>()
+    val toastEvent: SharedFlow<String> get() = _toastEvent
+
+    fun getLists(type: String) {
         viewModelScope.launch {
-            dataRepository.getListData(type, month, year)
+            dataRepository.getListData(type)
+                .cachedIn(viewModelScope)
+                .collectLatest { pagingData ->
+                    _expenses.value = pagingData
+                }
+        }
+    }
+
+    fun filterData(type: String, month: Int, year: Int) {
+        viewModelScope.launch {
+            dataRepository.getFilterData(type, month, year, _toastEvent)
                 .cachedIn(viewModelScope)
                 .collectLatest { pagingData ->
                     _expenses.value = pagingData

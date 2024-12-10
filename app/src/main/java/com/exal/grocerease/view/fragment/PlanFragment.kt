@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exal.grocerease.databinding.FragmentPlanBinding
@@ -50,17 +51,24 @@ class PlanFragment : Fragment() {
         binding.rvPlan.adapter = pagingAdapter
 
         lifecycleScope.launch {
-            planViewModel.getLists("Plan", null, null)
-            planViewModel.expenses.observe(viewLifecycleOwner) { pagingData ->
+            planViewModel.getLists("Plan")
+            planViewModel.planList.observe(viewLifecycleOwner) { pagingData ->
                 pagingAdapter.submitData(lifecycle, pagingData)
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            planViewModel.toastEvent.collect { message ->
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.icCalender.setOnClickListener {
             MonthYearPickerDialog(requireContext()) { month, year ->
                 lifecycleScope.launch {
-                    planViewModel.getLists("Plan", month, year)
-                    planViewModel.expenses.observe(viewLifecycleOwner) { pagingData ->
+                    val monthValue = month + 1
+                    planViewModel.filterData("Plan", monthValue, year)
+                    planViewModel.planList.observe(viewLifecycleOwner) { pagingData ->
                         pagingAdapter.submitData(lifecycle, pagingData)
                     }
                 }
