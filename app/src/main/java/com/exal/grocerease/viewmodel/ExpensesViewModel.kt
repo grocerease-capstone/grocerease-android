@@ -6,10 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.model.db.entities.ListEntity
 import com.exal.grocerease.model.repository.DataRepository
-import com.exal.grocerease.model.network.response.GetListResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
