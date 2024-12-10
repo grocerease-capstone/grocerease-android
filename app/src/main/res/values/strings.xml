@@ -53,5 +53,6 @@
     <string name="account_settings">Account Setting</string>
     <string name="reset_password">Reset Password</string>
     <string name="reset">Reset</string>
+    <string name="share_list">Share List</string>
 
 </resources>
