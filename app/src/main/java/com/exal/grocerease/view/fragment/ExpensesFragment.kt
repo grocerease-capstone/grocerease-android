@@ -69,6 +69,7 @@ class ExpensesFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             expenseViewModel.toastEvent.collect { message ->
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                binding.resetBtn.visibility = View.GONE
             }
         }
 
@@ -82,7 +83,18 @@ class ExpensesFragment : Fragment() {
                         pagingAdapter.submitData(lifecycle, pagingData)
                     }
                 }
+                binding.resetBtn.visibility = View.VISIBLE
             }.show()
+        }
+
+        binding.resetBtn.setOnClickListener {
+            lifecycleScope.launch {
+                expenseViewModel.getLists("Track")
+                expenseViewModel.expenses.observe(viewLifecycleOwner) { pagingData ->
+                    pagingAdapter.submitData(lifecycle, pagingData)
+                }
+            }
+            binding.resetBtn.visibility = View.GONE
         }
     }
 
