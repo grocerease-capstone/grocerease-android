@@ -2,6 +2,7 @@ package com.exal.grocerease.view.activity
 
 import android.os.Bundle
 import android.widget.AdapterView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -33,6 +34,7 @@ class AppSettingsActivity : AppCompatActivity() {
         val menuItemsApp = listOf(
             MenuItemApp("Theme", R.drawable.ic_theme),
             MenuItemApp("Language", R.drawable.ic_language),
+            MenuItemApp("About App", R.drawable.ic_info)
         )
 
         val adapter = MenuAppSettingAdapter(this, menuItemsApp)
@@ -42,6 +44,7 @@ class AppSettingsActivity : AppCompatActivity() {
             when (position) {
                 0 -> showThemeBottomSheet()
                 1 -> showLanguageBottomSheet()
+                2 -> Toast.makeText(this, "About App", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -84,7 +87,6 @@ class AppSettingsActivity : AppCompatActivity() {
         }
     }
 
-
     private fun showLanguageBottomSheet() {
         // Inflate layout BottomSheet
         val bottomSheetBinding = BottomSheetLanguageBinding.inflate(layoutInflater)
@@ -118,7 +120,4 @@ class AppSettingsActivity : AppCompatActivity() {
         // Show BottomSheet
         bottomSheetDialog.show()
     }
-
-
-
 }
