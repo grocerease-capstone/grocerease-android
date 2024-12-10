@@ -228,4 +228,14 @@ class DataRepository @Inject constructor(
             emit(Resource.Error(exception.message ?: "Error fetching data"))
         }
     }
+
+    fun deleteExpense(id: Int): Flow<Resource<PostListResponse>> = flow {
+        emit(Resource.Loading())
+        try {
+            val response = apiService.deleteExpense("Bearer: ${tokenManager.getToken()}", id)
+            emit(Resource.Success(response))
+        } catch (exception: Exception){
+            emit(Resource.Error(exception.message ?: "Error fetching data"))
+        }
+    }
 }

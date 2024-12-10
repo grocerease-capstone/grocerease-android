@@ -38,7 +38,7 @@
             android:exported="false" />
         <activity
             android:name=".view.activity.DetailExpenseActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".view.activity.MainActivity"
             android:exported="false" />

@@ -12,6 +12,7 @@ import com.exal.grocerease.model.network.response.ScanImageResponse
 import com.exal.grocerease.model.network.response.UpdateListResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -101,4 +102,10 @@ interface ApiServices {
         @Part("total_expenses") totalExpenses: RequestBody,
         @Part("total_items") totalItems: RequestBody
     ): UpdateListResponse
+
+    @DELETE("/list/{id}")
+    suspend fun deleteExpense(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): PostListResponse
 }

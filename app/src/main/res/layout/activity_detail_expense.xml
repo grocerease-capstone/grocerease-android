@@ -45,8 +45,19 @@
         android:id="@+id/shareBtn"
         android:layout_width="24dp"
         android:layout_height="26dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
         android:src="@drawable/ic_share"
+        app:layout_constraintBottom_toBottomOf="@+id/activityTxt"
+        app:layout_constraintEnd_toStartOf="@+id/deleteBtn"
+        app:layout_constraintTop_toTopOf="@+id/activityTxt" />
+
+    <ImageView
+        android:id="@+id/deleteBtn"
+        android:layout_width="24dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_delete"
+        app:tint="@color/iconButton"
         app:layout_constraintBottom_toBottomOf="@+id/activityTxt"
         app:layout_constraintEnd_toStartOf="@+id/editBtn"
         app:layout_constraintTop_toTopOf="@+id/activityTxt" />

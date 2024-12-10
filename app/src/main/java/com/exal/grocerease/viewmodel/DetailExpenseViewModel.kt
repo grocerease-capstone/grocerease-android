@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.model.network.response.DetailListResponse
+import com.exal.grocerease.model.network.response.PostListResponse
 import com.exal.grocerease.model.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,4 +27,6 @@ class DetailExpenseViewModel @Inject constructor(private val dataRepository: Dat
                 }
         }
     }
+
+    fun deleteExpense(id: Int): Flow<Resource<PostListResponse>> = dataRepository.deleteExpense(id)
 }

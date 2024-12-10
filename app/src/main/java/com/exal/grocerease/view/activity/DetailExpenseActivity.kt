@@ -10,15 +10,21 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exal.grocerease.R
 import com.exal.grocerease.databinding.ActivityDetailExpenseBinding
 import com.exal.grocerease.helper.DateFormatter
+import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.rupiahFormatter
+import com.exal.grocerease.model.network.response.PostListResponse
+import com.exal.grocerease.model.network.response.UpdateListResponse
 import com.exal.grocerease.view.adapter.DetailExpenseAdapter
 import com.exal.grocerease.viewmodel.DetailExpenseViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailExpenseActivity : AppCompatActivity() {
@@ -79,6 +85,40 @@ class DetailExpenseActivity : AppCompatActivity() {
 
         binding.shareBtn.setOnClickListener {
             Toast.makeText(this, "Share List Clicked", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.deleteBtn.setOnClickListener{
+            MaterialAlertDialogBuilder(this)
+                .setTitle(resources.getString(R.string.delete_list))
+                .setMessage(resources.getString(R.string.list_will_be_removed))
+                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .setPositiveButton(resources.getString(R.string.proceed)){ _, _ ->
+                    lifecycleScope.launch {
+                        viewModel.deleteExpense(expenseId).collect{ resource ->
+                            handleResource(resource)
+                        }
+                    }
+                }
+                .show()
+        }
+    }
+
+    private fun handleResource(resource: Resource<PostListResponse>) {
+        when (resource) {
+            is Resource.Loading -> {
+                Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+            }
+            is Resource.Success -> {
+                finish()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+            is Resource.Error -> {
+                Log.d("DELETE", "Error: ${resource.message}")
+                Toast.makeText(this, "Error ${resource.message}", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

@@ -28,6 +28,7 @@ import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.rupiahFormatter
 import com.exal.grocerease.model.network.response.PostListResponse
 import com.exal.grocerease.model.network.request.ProductItem
+import com.exal.grocerease.model.network.request.ProductItemPost
 import com.exal.grocerease.model.network.response.ProductsItem
 import com.exal.grocerease.view.adapter.ItemAdapter
 import com.exal.grocerease.view.fragment.AddManualExpenseDialogFragment
@@ -216,7 +217,7 @@ class CreateListActivity : AppCompatActivity() {
             val productItemsRequestBody = createRequestBody(
                 Gson().toJson(
                     viewModel.productList.value?.map {
-                        ProductItem(it.id ,it.name, it.amount, it.price, it.detail?.categoryIndex.toString(), it.totalPrice)
+                        ProductItemPost(it.name, it.amount, it.price, it.detail?.categoryIndex.toString(), it.totalPrice)
                     }
                 )
             )
