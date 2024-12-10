@@ -8,7 +8,7 @@
     tools:context=".view.activity.AccountSettingsActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView"
+        android:id="@+id/profileImage"
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:layout_marginTop="32dp"
@@ -16,6 +16,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backBtn" />
+
+    <Button
+        android:id="@+id/editBtn"
+        style="?attr/materialIconButtonFilledStyle"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:padding="8dp"
+        app:icon="@drawable/ic_pencil"
+        app:layout_constraintBottom_toBottomOf="@+id/profileImage"
+        app:layout_constraintEnd_toEndOf="@+id/profileImage" />
 
     <TextView
         android:id="@+id/usernameTxt"
@@ -26,7 +38,7 @@
         android:text="Username"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/usernameInputTxt"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/usernameInputTxt"

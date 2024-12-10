@@ -115,4 +115,13 @@ interface ApiServices {
         @Header("Authorization") token: String
     ): GetAccountResponse
 
+    @Multipart
+    @PUT("/user")
+    suspend fun updateAccount(
+        @Header("Authorization") token: String,
+        @Part profileImage: MultipartBody.Part?,
+        @Part("username") username: RequestBody?,
+        @Part("password") password: RequestBody?,
+        @Part("new_password") passwordRepeat: RequestBody?
+    ): UpdateListResponse
 }

@@ -98,11 +98,6 @@ class ProfileFragment : Fragment() {
                 binding.dateTxt.text = "$monthName $year"
             }.show()
         }
-
-//        binding.accSetting.setOnClickListener {
-//            val intent = Intent(requireContext(), AppSettingsActivity::class.java)
-//            startActivity(intent)
-//        }
     }
 
     private fun observeAccount() {

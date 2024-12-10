@@ -190,7 +190,12 @@ class DataRepository @Inject constructor(
     }
 
     @OptIn(ExperimentalPagingApi::class)
-    fun getFilterData(type: String, month: Int, year: Int, toastEvent: MutableSharedFlow<String>): Flow<PagingData<ListEntity>> {
+    fun getFilterData(
+        type: String,
+        month: Int,
+        year: Int,
+        toastEvent: MutableSharedFlow<String>
+    ): Flow<PagingData<ListEntity>> {
         return Pager(
             config = PagingConfig(pageSize = 10),
             remoteMediator = FilterRemoteMediator(
@@ -230,13 +235,48 @@ class DataRepository @Inject constructor(
         }
     }
 
-    fun updateList(id:Int, title: RequestBody, productItems: RequestBody, type: RequestBody, totalExpenses: RequestBody, totalItems: RequestBody): Flow<Resource<UpdateListResponse>> = flow {
+    fun updateList(
+        id: Int,
+        title: RequestBody,
+        productItems: RequestBody,
+        type: RequestBody,
+        totalExpenses: RequestBody,
+        totalItems: RequestBody
+    ): Flow<Resource<UpdateListResponse>> = flow {
         emit(Resource.Loading())
         try {
-            val response = apiService.updateList("Bearer: ${tokenManager.getToken()}", id, title, productItems, type, totalExpenses, totalItems)
+            val response = apiService.updateList(
+                "Bearer: ${tokenManager.getToken()}",
+                id,
+                title,
+                productItems,
+                type,
+                totalExpenses,
+                totalItems
+            )
             emit(Resource.Success(response))
         } catch (exception: Exception) {
             emit(Resource.Error(exception.message ?: "Error fetching data"))
+        }
+    }
+
+    fun updateAccount(
+        profileImage: MultipartBody.Part?,
+        username: RequestBody?,
+        password: RequestBody?,
+        passwordNew: RequestBody?
+    ): Flow<Resource<UpdateListResponse>> = flow {
+        emit(Resource.Loading())
+        try {
+            val response = apiService.updateAccount(
+                "Bearer: ${tokenManager.getToken()}",
+                profileImage,
+                username,
+                password,
+                passwordNew)
+            emit(Resource.Success(response))
+        } catch (exception: Exception) {
+         emit(Resource.Error(exception.message ?: "Error fetching data"))
         }
     }
 
@@ -245,7 +285,7 @@ class DataRepository @Inject constructor(
         try {
             val response = apiService.deleteExpense("Bearer: ${tokenManager.getToken()}", id)
             emit(Resource.Success(response))
-        } catch (exception: Exception){
+        } catch (exception: Exception) {
             emit(Resource.Error(exception.message ?: "Error fetching data"))
         }
     }
