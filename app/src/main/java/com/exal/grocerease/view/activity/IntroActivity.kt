@@ -26,10 +26,10 @@ class IntroActivity : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        if (introManager.isIntroCompleted()) {
-//            navigateToLanding()
-//            return
-//        }
+        if (introManager.isIntroCompleted()) {
+            navigateToLanding()
+            return
+        }
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
