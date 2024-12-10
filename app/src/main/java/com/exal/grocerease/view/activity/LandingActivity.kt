@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.exal.grocerease.databinding.ActivityLandingBinding
 import com.exal.grocerease.helper.manager.IntroManager
+import com.exal.grocerease.helper.manager.TokenManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -13,6 +14,9 @@ class LandingActivity : AppCompatActivity() {
 
     @Inject
     lateinit var introManager: IntroManager
+
+    @Inject
+    lateinit var tokenManager: TokenManager
 
     private var binding: ActivityLandingBinding? = null
     private val _binding get() = binding!!
@@ -36,6 +40,15 @@ class LandingActivity : AppCompatActivity() {
             introManager.clearIntroFlag()
             val intent = Intent(this, IntroActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(tokenManager.isLoggedIn()){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

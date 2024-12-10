@@ -105,9 +105,9 @@ class ProfileFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     tokenManager.clearToken()
                     viewModel.clearDatabase()
+                    requireActivity().finish()
                     val intent = Intent(requireContext(), LandingActivity::class.java)
                     startActivity(intent)
-                    requireActivity().finish()
                 }
                 is Resource.Error -> {
                     binding.progressBar.visibility = View.GONE
