@@ -36,6 +36,7 @@ class AccountSettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAccountSettingsBinding
     private val viewModel: AccountSettingsViewModel by viewModels()
     private var profileImage: String? = null
+    private var username: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +62,7 @@ class AccountSettingsActivity : AppCompatActivity() {
 
         binding.resetBtn.setOnClickListener {
             val intent = Intent(this, ResetPasswordActivity::class.java)
+            intent.putExtra("USERNAME", username)
             startActivity(intent)
         }
 
@@ -71,6 +73,7 @@ class AccountSettingsActivity : AppCompatActivity() {
 
     private fun observeAccount() {
         viewModel.accountData.observe(this) {
+            username = it.data?.data?.userProfile?.username
             binding.usernameInputTxt.editText?.setText(it.data?.data?.userProfile?.username)
             Glide.with(this)
                 .load(it.data?.data?.userProfile?.image)

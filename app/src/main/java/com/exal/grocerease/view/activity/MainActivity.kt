@@ -81,10 +81,12 @@ class MainActivity : AppCompatActivity() {
         setupSmoothBottomMenu()
 
         val targetFragment = intent.getStringExtra("TARGET_FRAGMENT")
-        if (targetFragment == "ExpensesFragment") {
-            navController.navigate(R.id.expensesFragment)
-        } else if (targetFragment == "PlanFragment") {
-            navController.navigate(R.id.planFragment)
+        when (targetFragment) {
+            "ProfileFragment" -> navController.navigate(R.id.profileFragment)
+            "HomeFragment" -> navController.navigate(R.id.homeFragment)
+            "ExpensesFragment" -> navController.navigate(R.id.expensesFragment)
+            "PlanFragment" -> navController.navigate(R.id.planFragment)
+            else -> navController.navigate(R.id.homeFragment)
         }
     }
 
