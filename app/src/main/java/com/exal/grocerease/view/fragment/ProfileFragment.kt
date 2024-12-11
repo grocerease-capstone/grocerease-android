@@ -38,6 +38,10 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: ProfileViewModel by viewModels()
 
+    private var usernameBinding: String? = "-"
+    private var emailBinding: String? = "-"
+    private var imageProfileBinding: String? = "-"
+
     @Inject
     lateinit var tokenManager: TokenManager
 
@@ -52,8 +56,6 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentProfileBinding.bind(view)
-
         viewModel.getAccount()
 
         observeAccount()
@@ -101,11 +103,15 @@ class ProfileFragment : Fragment() {
     }
 
     private fun observeAccount() {
-        viewModel.accountData.observe(requireActivity()){
-            binding.username.text = it.data?.data?.userProfile?.username
-            binding.email.text = it.data?.data?.userProfile?.email
+        viewModel.accountData.observe(viewLifecycleOwner){
+            usernameBinding = it.data?.data?.userProfile?.username
+            emailBinding = it.data?.data?.userProfile?.email
+            imageProfileBinding = it.data?.data?.userProfile?.image
+
+            binding.username.text = usernameBinding
+            binding.email.text = emailBinding
             Glide.with(requireContext())
-                .load(it.data?.data?.userProfile?.image)
+                .load(imageProfileBinding)
                 .apply(
                     RequestOptions.placeholderOf(R.drawable.placeholder)
                         .error(R.drawable.ic_close)
