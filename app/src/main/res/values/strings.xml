@@ -57,5 +57,9 @@
     <string name="delete_list">Delete this list?</string>
     <string name="list_will_be_removed">This list and all its items will be removed.</string>
     <string name="notification">Notifications</string>
+    <string name="error_empty_product_name">Product name cannot be empty</string>
+    <string name="error_invalid_product_price">Product price must be greater than 0</string>
+    <string name="error_invalid_product_amount">Qty cannot be 0</string>
+    <string name="error_invalid_category">Please select a valid category</string>
 
 </resources>
