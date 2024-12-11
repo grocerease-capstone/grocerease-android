@@ -2,8 +2,9 @@ package com.exal.grocerease.model.network.retrofit
 
 import com.exal.grocerease.model.network.response.DetailListResponse
 import com.exal.grocerease.model.network.response.ExpenseListResponseItem
-import com.exal.grocerease.model.network.response.GetAccountResponse
+import com.exal.grocerease.model.network.response.GetAllSharedListResponse
 import com.exal.grocerease.model.network.response.GetListResponse
+import com.exal.grocerease.model.network.response.GetProfileResponse
 import com.exal.grocerease.model.network.response.GetSharedListResponse
 import com.exal.grocerease.model.network.response.LoginResponse
 import com.exal.grocerease.model.network.response.LogoutResponse
@@ -114,7 +115,7 @@ interface ApiServices {
     @GET("/user")
     suspend fun getAccount(
         @Header("Authorization") token: String
-    ): GetAccountResponse
+    ): GetProfileResponse
 
     @Multipart
     @PUT("/user")
@@ -150,4 +151,9 @@ interface ApiServices {
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): UpdateListResponse
+
+    @GET("/list/shared")
+    suspend fun getAllSharedList(
+        @Header("Authorization") token: String
+    ): GetAllSharedListResponse
 }

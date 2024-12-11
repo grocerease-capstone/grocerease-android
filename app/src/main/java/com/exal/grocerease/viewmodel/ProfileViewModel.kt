@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.exal.grocerease.helper.Resource
-import com.exal.grocerease.model.network.response.GetAccountResponse
+import com.exal.grocerease.model.network.response.GetProfileResponse
 import com.exal.grocerease.model.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,8 +19,8 @@ class ProfileViewModel @Inject constructor(private val dataRepository: DataRepos
     private val _chartData = MutableLiveData<String>()
     val chartData: LiveData<String> get() = _chartData
 
-    private val _accountData = MutableLiveData<Resource<GetAccountResponse>>()
-    val accountData: LiveData<Resource<GetAccountResponse>> get() = _accountData
+    private val _accountData = MutableLiveData<Resource<GetProfileResponse>>()
+    val accountData: LiveData<Resource<GetProfileResponse>> get() = _accountData
 
     fun saveData(){
         _chartData.value = "Hello"

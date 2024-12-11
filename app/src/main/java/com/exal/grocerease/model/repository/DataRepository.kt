@@ -14,8 +14,9 @@ import com.exal.grocerease.model.db.entities.ListEntity
 import com.exal.grocerease.model.network.response.DetailListResponse
 import com.exal.grocerease.model.network.retrofit.ApiServices
 import com.exal.grocerease.model.network.response.ExpenseListResponseItem
-import com.exal.grocerease.model.network.response.GetAccountResponse
+import com.exal.grocerease.model.network.response.GetAllSharedListResponse
 import com.exal.grocerease.model.network.response.GetListResponse
+import com.exal.grocerease.model.network.response.GetProfileResponse
 import com.exal.grocerease.model.network.response.GetSharedListResponse
 import com.exal.grocerease.model.network.response.PostListResponse
 import com.exal.grocerease.model.network.response.ScanImageResponse
@@ -215,7 +216,7 @@ class DataRepository @Inject constructor(
         ).flow
     }
 
-    fun getAccount(): Flow<Resource<GetAccountResponse>> = flow {
+    fun getAccount(): Flow<Resource<GetProfileResponse>> = flow {
         emit(Resource.Loading())
         try {
             val response = apiService.getAccount("Bearer: ${tokenManager.getToken()}")
@@ -326,6 +327,16 @@ class DataRepository @Inject constructor(
         emit(Resource.Loading())
         try {
             val response = apiService.declineNotification("Bearer: ${tokenManager.getToken()}", id)
+            emit(Resource.Success(response))
+        } catch (exception: Exception) {
+            emit(Resource.Error(exception.message ?: "Error fetching data"))
+        }
+    }
+
+    fun getAllSharedList(): Flow<Resource<GetAllSharedListResponse>> = flow {
+        emit(Resource.Loading())
+        try {
+            val response = apiService.getAllSharedList("Bearer: ${tokenManager.getToken()}")
             emit(Resource.Success(response))
         } catch (exception: Exception) {
             emit(Resource.Error(exception.message ?: "Error fetching data"))
