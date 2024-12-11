@@ -40,10 +40,10 @@ class DataRepository @Inject constructor(
     private val database: AppDatabase
 ) {
 
-    fun login(username: String, password: String): Flow<Resource<Boolean>> = flow {
+    fun login(username: String, password: String, fcmToken: String): Flow<Resource<Boolean>> = flow {
         emit(Resource.Loading())
         try {
-            val response = apiService.login(username, password)
+            val response = apiService.login(username, password, fcmToken)
             if (response.status == true && response.data != null) {
                 val token = response.data
                 tokenManager.saveToken(token)

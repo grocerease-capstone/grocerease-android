@@ -18,9 +18,9 @@ class LoginViewModel @Inject constructor(
     private val _loginState = MutableLiveData<Resource<Boolean>>()
     val loginState: LiveData<Resource<Boolean>> get() = _loginState
 
-    fun login(username: String, password: String) {
+    fun login(username: String, password: String, fcmToken: String) {
         viewModelScope.launch {
-            dataRepository.login(username, password).collect { resource ->
+            dataRepository.login(username, password, fcmToken).collect { resource ->
                 _loginState.postValue(resource)
             }
         }
