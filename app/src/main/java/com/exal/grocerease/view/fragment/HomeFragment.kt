@@ -18,6 +18,7 @@ import com.exal.grocerease.viewmodel.HomeViewModel
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.view.activity.CreateListActivity
 import com.exal.grocerease.view.activity.DetailExpenseActivity
+import com.exal.grocerease.view.activity.NotificationActivity
 import com.exal.grocerease.view.activity.ShareListActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -47,6 +48,11 @@ class HomeFragment : Fragment() {
 
         binding.shareListBtn.setOnClickListener{
             val intent = Intent(requireContext(), ShareListActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.notifBtn.setOnClickListener {
+            val intent = Intent(requireContext(), NotificationActivity::class.java)
             startActivity(intent)
         }
 

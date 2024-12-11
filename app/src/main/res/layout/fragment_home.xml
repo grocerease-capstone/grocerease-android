@@ -46,6 +46,20 @@
                 app:layout_constraintTop_toTopOf="@+id/homeTxt"
                 app:tint="@color/iconButton" />
 
+            <ImageView
+                android:id="@+id/notifBtn"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:clickable="true"
+                android:contentDescription="@string/content_image"
+                android:src="@drawable/ic_notification"
+                app:layout_constraintBottom_toBottomOf="@+id/homeTxt"
+                app:layout_constraintEnd_toStartOf="@id/shareListBtn"
+                app:layout_constraintTop_toTopOf="@+id/homeTxt"
+                app:tint="@color/iconButton" />
+
+
             <View
                 android:id="@+id/view2"
                 android:layout_width="match_parent"

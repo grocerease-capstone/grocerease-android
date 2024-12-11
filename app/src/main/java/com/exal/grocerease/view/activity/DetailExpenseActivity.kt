@@ -20,6 +20,7 @@ import com.exal.grocerease.helper.rupiahFormatter
 import com.exal.grocerease.model.network.response.PostListResponse
 import com.exal.grocerease.model.network.response.UpdateListResponse
 import com.exal.grocerease.view.adapter.DetailExpenseAdapter
+import com.exal.grocerease.view.fragment.ShareDialogFragment
 import com.exal.grocerease.viewmodel.DetailExpenseViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.Gson
@@ -30,7 +31,7 @@ import kotlinx.coroutines.launch
 class DetailExpenseActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailExpenseBinding
-    private val viewModel: DetailExpenseViewModel by viewModels()
+    val viewModel: DetailExpenseViewModel by viewModels()
 
     private lateinit var expenseTitle: String
     private var listId: Int = -1
@@ -84,7 +85,8 @@ class DetailExpenseActivity : AppCompatActivity() {
         }
 
         binding.shareBtn.setOnClickListener {
-            Toast.makeText(this, "Share List Clicked", Toast.LENGTH_SHORT).show()
+            val shareDialog = ShareDialogFragment(expenseId)
+            shareDialog.show(supportFragmentManager, "shareDialog")
         }
 
         binding.deleteBtn.setOnClickListener{
@@ -105,6 +107,23 @@ class DetailExpenseActivity : AppCompatActivity() {
         }
     }
 
+    fun handleShareResource(resource: Resource<PostListResponse>) {
+        when (resource) {
+            is Resource.Loading -> {
+                Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+            }
+            is Resource.Success -> {
+                finish()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+            is Resource.Error -> {
+                Log.d("share", resource.message.toString())
+                Toast.makeText(this, "Error ${resource.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun handleResource(resource: Resource<PostListResponse>) {
         when (resource) {
             is Resource.Loading -> {
@@ -116,7 +135,6 @@ class DetailExpenseActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             is Resource.Error -> {
-                Log.d("DELETE", "Error: ${resource.message}")
                 Toast.makeText(this, "Error ${resource.message}", Toast.LENGTH_SHORT).show()
             }
         }

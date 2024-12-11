@@ -4,6 +4,7 @@ import com.exal.grocerease.model.network.response.DetailListResponse
 import com.exal.grocerease.model.network.response.ExpenseListResponseItem
 import com.exal.grocerease.model.network.response.GetAccountResponse
 import com.exal.grocerease.model.network.response.GetListResponse
+import com.exal.grocerease.model.network.response.GetSharedListResponse
 import com.exal.grocerease.model.network.response.LoginResponse
 import com.exal.grocerease.model.network.response.LogoutResponse
 import com.exal.grocerease.model.network.response.PostListResponse
@@ -123,5 +124,30 @@ interface ApiServices {
         @Part("username") username: RequestBody?,
         @Part("password") password: RequestBody?,
         @Part("new_password") passwordRepeat: RequestBody?
+    ): UpdateListResponse
+
+    @FormUrlEncoded
+    @POST("/share-request/{id}")
+    suspend fun shareList(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int,
+        @Field("email") email: String
+    ): PostListResponse
+
+    @GET("/share-request")
+    suspend fun getSharedList(
+        @Header("Authorization") token: String
+    ): GetSharedListResponse
+
+    @GET("/share-request/{id}")
+    suspend fun acceptNotification(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): UpdateListResponse
+
+    @DELETE("/share-request/{id}")
+    suspend fun declineNotification(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
     ): UpdateListResponse
 }

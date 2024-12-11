@@ -16,6 +16,7 @@ import com.exal.grocerease.model.network.retrofit.ApiServices
 import com.exal.grocerease.model.network.response.ExpenseListResponseItem
 import com.exal.grocerease.model.network.response.GetAccountResponse
 import com.exal.grocerease.model.network.response.GetListResponse
+import com.exal.grocerease.model.network.response.GetSharedListResponse
 import com.exal.grocerease.model.network.response.PostListResponse
 import com.exal.grocerease.model.network.response.ScanImageResponse
 import com.exal.grocerease.model.network.response.UpdateListResponse
@@ -273,10 +274,11 @@ class DataRepository @Inject constructor(
                 profileImage,
                 username,
                 password,
-                passwordNew)
+                passwordNew
+            )
             emit(Resource.Success(response))
         } catch (exception: Exception) {
-         emit(Resource.Error(exception.message ?: "Error fetching data"))
+            emit(Resource.Error(exception.message ?: "Error fetching data"))
         }
     }
 
@@ -284,6 +286,46 @@ class DataRepository @Inject constructor(
         emit(Resource.Loading())
         try {
             val response = apiService.deleteExpense("Bearer: ${tokenManager.getToken()}", id)
+            emit(Resource.Success(response))
+        } catch (exception: Exception) {
+            emit(Resource.Error(exception.message ?: "Error fetching data"))
+        }
+    }
+
+    fun shareList(id: Int, email: String): Flow<Resource<PostListResponse>> = flow {
+        emit(Resource.Loading())
+        try {
+            val response = apiService.shareList("Bearer: ${tokenManager.getToken()}", id, email)
+            emit(Resource.Success(response))
+        } catch (exception: Exception) {
+            emit(Resource.Error(exception.message ?: "Error fetching data"))
+        }
+    }
+
+    fun getSharedList(): Flow<Resource<GetSharedListResponse>> = flow {
+        emit(Resource.Loading())
+        try {
+            val response = apiService.getSharedList("Bearer: ${tokenManager.getToken()}")
+            emit(Resource.Success(response))
+        } catch (exception: Exception) {
+            emit(Resource.Error(exception.message ?: "Error fetching data"))
+        }
+    }
+
+    fun acceptNotification(id: Int): Flow<Resource<UpdateListResponse>> = flow {
+        emit(Resource.Loading())
+        try {
+            val response = apiService.acceptNotification("Bearer: ${tokenManager.getToken()}", id)
+            emit(Resource.Success(response))
+        } catch (exception: Exception) {
+            emit(Resource.Error(exception.message ?: "Error fetching data"))
+        }
+    }
+
+    fun declineNotification(id: Int): Flow<Resource<UpdateListResponse>> = flow {
+        emit(Resource.Loading())
+        try {
+            val response = apiService.declineNotification("Bearer: ${tokenManager.getToken()}", id)
             emit(Resource.Success(response))
         } catch (exception: Exception) {
             emit(Resource.Error(exception.message ?: "Error fetching data"))

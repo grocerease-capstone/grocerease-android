@@ -18,7 +18,7 @@
 
         <!-- Name -->
         <TextView
-            android:id="@+id/tvNameLabel"
+            android:id="@+id/tvInsertEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -32,10 +32,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvNameLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/tvInsertEmail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tvNameLabel"
-            app:layout_constraintTop_toTopOf="@+id/tvNameLabel">
+            app:layout_constraintStart_toEndOf="@+id/tvInsertEmail"
+            app:layout_constraintTop_toTopOf="@+id/tvInsertEmail">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
