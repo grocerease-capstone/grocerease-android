@@ -91,32 +91,37 @@ class ProfileFragment : Fragment() {
                 LineSample(viewModel)
             }
         }
-
-        binding.calendarButton.setOnClickListener {
-            MonthYearPickerDialog(requireContext()) { month, year ->
-                val monthName = DateFormatSymbols().months[month]
-                val monthValue = month + 1
-                Log.d("month", "Bulan saat ini : $month  ||  $monthValue")
-                binding.dateTxt.text = "$monthName $year"
-            }.show()
-        }
     }
 
     private fun observeAccount() {
-        viewModel.accountData.observe(viewLifecycleOwner){
-            usernameBinding = it.data?.data?.userProfile?.username
-            emailBinding = it.data?.data?.userProfile?.email
-            imageProfileBinding = it.data?.data?.userProfile?.image
+        viewModel.accountData.observe(viewLifecycleOwner){ resource ->
+            when (resource){
+                is Resource.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is Resource.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    viewModel.setChartData(resource.data?.data?.listsByWeek)
 
-            binding.username.text = usernameBinding
-            binding.email.text = emailBinding
-            Glide.with(requireContext())
-                .load(imageProfileBinding)
-                .apply(
-                    RequestOptions.placeholderOf(R.drawable.placeholder)
-                        .error(R.drawable.ic_close)
-                )
-                .into(binding.profileImage)
+                    usernameBinding = resource.data?.data?.userProfile?.username
+                    emailBinding = resource.data?.data?.userProfile?.email
+                    imageProfileBinding = resource.data?.data?.userProfile?.image
+
+                    binding.username.text = usernameBinding
+                    binding.email.text = emailBinding
+                    Glide.with(requireContext())
+                        .load(imageProfileBinding)
+                        .apply(
+                            RequestOptions.placeholderOf(R.drawable.placeholder)
+                                .error(R.drawable.ic_close)
+                        )
+                        .into(binding.profileImage)
+                }
+                is Resource.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(requireContext(), resource.message, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 

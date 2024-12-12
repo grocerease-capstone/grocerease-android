@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.model.network.response.GetProfileResponse
+import com.exal.grocerease.model.network.response.ListsByWeekItem
 import com.exal.grocerease.model.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,14 +17,15 @@ class ProfileViewModel @Inject constructor(private val dataRepository: DataRepos
     private val _logoutState = MutableLiveData<Resource<Boolean>>()
     val logoutState: LiveData<Resource<Boolean>> get() = _logoutState
 
-    private val _chartData = MutableLiveData<String>()
-    val chartData: LiveData<String> get() = _chartData
+    private val _chartData = MutableLiveData<List<Double>>()
+    val chartData: LiveData<List<Double>> get() = _chartData
 
     private val _accountData = MutableLiveData<Resource<GetProfileResponse>>()
     val accountData: LiveData<Resource<GetProfileResponse>> get() = _accountData
 
-    fun saveData(){
-        _chartData.value = "Hello"
+    fun setChartData(data: List<ListsByWeekItem?>?) {
+        val chartDataList = data?.mapNotNull { it?.totalExpenses?.toDouble() } ?: emptyList()
+        _chartData.postValue(chartDataList)
     }
 
     fun logout() {

@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,24 +40,24 @@ val gridProperties = GridProperties(
     xAxisProperties = GridProperties.AxisProperties(
         thickness = .2.dp,
         color = SolidColor(Color.Gray.copy(alpha = .5f)),
-        style = StrokeStyle.Dashed(intervals = floatArrayOf(15f,15f), phase = 10f),
+        style = StrokeStyle.Dashed(intervals = floatArrayOf(15f, 15f), phase = 10f),
     ),
     yAxisProperties = GridProperties.AxisProperties(
         thickness = .2.dp,
         color = SolidColor(Color.Gray.copy(alpha = .5f)),
-        style = StrokeStyle.Dashed(intervals = floatArrayOf(15f,15f), phase = 10f),
+        style = StrokeStyle.Dashed(intervals = floatArrayOf(15f, 15f), phase = 10f),
     ),
 )
 val dividerProperties = DividerProperties(
     xAxisProperties = LineProperties(
         thickness = .2.dp,
         color = SolidColor(Color.Gray.copy(alpha = .5f)),
-        style = StrokeStyle.Dashed(intervals = floatArrayOf(15f,15f), phase = 10f),
+        style = StrokeStyle.Dashed(intervals = floatArrayOf(15f, 15f), phase = 10f),
     ),
     yAxisProperties = LineProperties(
         thickness = .2.dp,
         color = SolidColor(Color.Gray.copy(alpha = .5f)),
-        style = StrokeStyle.Dashed(intervals = floatArrayOf(15f,15f), phase = 10f),
+        style = StrokeStyle.Dashed(intervals = floatArrayOf(15f, 15f), phase = 10f),
     )
 )
 val labelProperties = LabelProperties(
@@ -71,43 +72,44 @@ val labelProperties = LabelProperties(
 
 @Composable
 fun LineSample(viewModel: ProfileViewModel) {
-//    viewModel.saveData()
-//
-//    val testData = remember {
-//        viewModel.chartData.value
-//    }
 
-//    Log.d("Composable", "LineSample: $testData")
+    val chartValue = viewModel.chartData.observeAsState(initial = emptyList())
+    val cleanedChartValue = chartValue.value
 
-    val data = remember {
-        listOf(
-            Line(
-                label = "Windows",
-                values = listOf(
-                    75.0,
-                    5.0,
-                    200.0,
-                    85.0,
-                ),
-                color = SolidColor(Color(0xFF2B8130)),
-                firstGradientFillColor = Color(0xFF66BB6A).copy(alpha = .4f),
-                secondGradientFillColor = Color.Transparent,
-                strokeAnimationSpec = tween(2000, easing = EaseInOutCubic),
-                gradientAnimationDelay = 1000,
-                drawStyle = DrawStyle.Stroke(.5.dp),
-                curvedEdges = true
-            ),
-        )
-    }
-    Card(modifier= Modifier.height(240.dp).fillMaxWidth()
-        .border(2.dp, Color.Transparent, RoundedCornerShape(12.dp)),
+    Log.d("Composable", "LineSample: $cleanedChartValue")
+
+    val data = listOf(
+        Line(
+            label = "Windows",
+            values = cleanedChartValue,
+            color = SolidColor(Color(0xFF2B8130)),
+            firstGradientFillColor = Color(0xFF66BB6A).copy(alpha = .4f),
+            secondGradientFillColor = Color.Transparent,
+            strokeAnimationSpec = tween(2000, easing = EaseInOutCubic),
+            gradientAnimationDelay = 1000,
+            drawStyle = DrawStyle.Stroke(.5.dp),
+            curvedEdges = true
+        ),
+    )
+    Card(
+        modifier = Modifier
+            .height(240.dp)
+            .fillMaxWidth()
+            .border(2.dp, Color.Transparent, RoundedCornerShape(12.dp)),
 //        elevation = CardDefaults.elevatedCardElevation(2.dp),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color(0xff2D2D2D)
         )
     ) {
-        Box(modifier = Modifier.fillMaxSize().padding(vertical = 12.dp).border(2.dp, Color.Transparent, RoundedCornerShape(12.dp))){
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(vertical = 12.dp)
+                .border(2.dp, Color.Transparent, RoundedCornerShape(12.dp))
+        ) {
+
+            Log.d("Composable", "LineSample: $data")
             LineChart(
                 labelProperties = labelProperties,
                 modifier = Modifier
@@ -140,7 +142,12 @@ fun LineSample(viewModel: ProfileViewModel) {
                         it.format(1) + " k"
                     },
                 ),
-                labelHelperProperties = LabelHelperProperties(textStyle = TextStyle(fontSize = 12.sp, color = Color.White)),
+                labelHelperProperties = LabelHelperProperties(
+                    textStyle = TextStyle(
+                        fontSize = 12.sp,
+                        color = Color.White
+                    )
+                ),
                 curvedEdges = false
             )
         }
