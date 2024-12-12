@@ -130,7 +130,7 @@ fun LineSample(viewModel: ProfileViewModel) {
                     ),
                     contentBuilder = {
                         Log.d("TAG", "LineSample: $it")
-                        it.format(1) + " Ribu Rupiah"
+                        it.format(1)
                     },
                     containerColor = Color(0xff414141)
                 ),

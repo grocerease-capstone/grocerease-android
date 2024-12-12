@@ -126,6 +126,7 @@ class ProfileFragment : Fragment() {
                     binding.expensesTv.text = totalExpenseBinding?.let { rupiahFormatter(it) }
                     binding.totalItemsTv.text = buildString {
                         append(totalItemsBinding.toString())
+                        append(" ")
                         append(getString(R.string.items))
                     }
                 }
