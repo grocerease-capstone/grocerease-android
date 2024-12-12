@@ -61,5 +61,21 @@
     <string name="price_cannot_blank">Price cannot be blank</string>
     <string name="quantity_cannot_blank">quantity cannot be blank</string>
     <string name="category_cannot_blank">Category cannot be blank</string>
+    <string name="insert_your_email">Insert your email</string>
+    <string name="insert_your_password">Insert your Password</string>
+    <string name="confirm_your_password">Confirm your Password</string>
+    <string name="register">Register</string>
+    <string name="privacy_policy"><![CDATA[Privacy & Policy]]></string>
+    <string name="insert_your_username">Insert your Username</string>
+    <string name="login">Login</string>
+    <string name="insert_email_and_password">Please insert your email and password to Log into your account!</string>
+    <string name="sign_up_here">Don\'t have an account? Sign Up here!</string>
+    <string name="items"> Items</string>
+    <string name="data_from_the_last">Data from the last 28 days</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="monthly_expense">Monthly Expense</string>
+    <string name="total_expense">Total Expense</string>
+    <string name="total_items">Total Items</string>
 
 </resources>

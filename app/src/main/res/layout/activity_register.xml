@@ -23,6 +23,7 @@
         android:layout_height="250dp"
         android:src="@drawable/login_illus_2"
         android:scaleType="centerCrop"
+        android:contentDescription="@string/imageView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +33,7 @@
         android:id="@+id/loginTextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="@string/register"
         android:textColor="@color/white"
         android:layout_marginStart="24dp"
         android:layout_marginBottom="8dp"
@@ -42,13 +43,11 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
-
-
     <TextView
         android:id="@+id/insertUsernameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Insert your Username"
+        android:text="@string/insert_your_username"
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@id/image_header"
         app:layout_constraintStart_toStartOf="@id/textFieldEmail"
@@ -70,7 +69,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/textFieldUsername"
-        android:text="Insert your Email"
+        android:text="@string/insert_your_email"
         app:layout_constraintStart_toStartOf="@id/textFieldEmail"
         />
 
@@ -100,7 +100,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,7 +110,7 @@
         android:id="@+id/insertPasswordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Insert your Password"
+        android:text="@string/insert_your_password"
         app:layout_constraintTop_toBottomOf="@id/textFieldEmail"
         app:layout_constraintStart_toStartOf="@id/textFieldPassword"
         />
@@ -139,7 +140,7 @@
         android:id="@+id/confirmPasswordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Confirm your Password"
+        android:text="@string/confirm_your_password"
         app:layout_constraintTop_toBottomOf="@id/textFieldPassword"
         app:layout_constraintStart_toStartOf="@id/textFieldPassword"
         />
@@ -173,7 +174,7 @@
         android:textColor="@color/white"
         android:layout_marginHorizontal="24dp"
         app:cornerRadius="8dp"
-        android:text="Register"
+        android:text="@string/register"
         app:layout_constraintTop_toBottomOf="@id/textFieldConfirmPassword"
         />
 
@@ -181,7 +182,7 @@
         android:id="@+id/privacy_policy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Privacy &amp; Policy"
+        android:text="@string/privacy_policy"
         android:clickable="true"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
