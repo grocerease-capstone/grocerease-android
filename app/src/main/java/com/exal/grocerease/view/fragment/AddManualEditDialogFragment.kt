@@ -1,6 +1,5 @@
 package com.exal.grocerease.view.fragment
 
-import android.R
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,12 +9,9 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import androidx.compose.ui.semantics.dialog
-import androidx.compose.ui.semantics.dismiss
-import androidx.compose.ui.semantics.text
 import androidx.fragment.app.DialogFragment
+import com.exal.grocerease.R
 import com.exal.grocerease.databinding.AddManualDialogFragmentBinding
-import com.exal.grocerease.databinding.ItemEditListBinding
 import com.exal.grocerease.helper.rupiahFormatter
 import com.exal.grocerease.model.network.response.Detail
 import com.exal.grocerease.model.network.response.ProductsItem
@@ -67,7 +63,7 @@ class AddManualEditDialogFragment : DialogFragment() {
         val categories = categoryMapping.values.toList()
         val adapter = ArrayAdapter(
             binding.textFieldCategory.context,
-            R.layout.simple_list_item_1,
+            android.R.layout.simple_list_item_1,
             categories
         )
         (binding.textFieldCategory.editText as? AutoCompleteTextView)?.setAdapter(adapter)
@@ -82,6 +78,23 @@ class AddManualEditDialogFragment : DialogFragment() {
             val productAmount = binding.textFieldQuantity.editText?.text.toString().toIntOrNull() ?: 0
             val selectedCategory = (binding.textFieldCategory.editText as? AutoCompleteTextView)?.text.toString()
             val categoryKey = reverseCategoryMapping[selectedCategory]
+
+            if (productName.isBlank()) {
+                binding.textFieldName.error = getString(R.string.name_cannot_blank)
+                return@setOnClickListener
+            }
+            if (productPrice == null) {
+                binding.textFieldPrice.error = getString(R.string.price_cannot_blank)
+                return@setOnClickListener
+            }
+            if (productAmount == null || productAmount <= 0) {
+                binding.textFieldQuantity.error = getString(R.string.quantity_cannot_blank)
+                return@setOnClickListener
+            }
+            if (selectedCategory.isBlank() || reverseCategoryMapping[selectedCategory] == null) {
+                binding.textFieldCategory.error = getString(R.string.category_cannot_blank)
+                return@setOnClickListener
+            }
 
             val newItem = ProductsItem(
                 id = newId,

@@ -17,21 +17,6 @@ data class GetProfileResponse(
 	val status: Boolean? = null
 )
 
-data class ListsItem2(
-
-	@field:SerializedName("boughtAt")
-	val boughtAt: String? = null,
-
-	@field:SerializedName("total_expenses")
-	val totalExpenses: String? = null,
-
-	@field:SerializedName("total_products")
-	val totalProducts: Int? = null,
-
-	@field:SerializedName("total_items")
-	val totalItems: Int? = null
-)
-
 data class UserProfile(
 
 	@field:SerializedName("image")
@@ -46,9 +31,21 @@ data class UserProfile(
 
 data class Data6(
 
-	@field:SerializedName("lists")
-	val lists: List<ListsItem2?>? = null,
-
 	@field:SerializedName("userProfile")
-	val userProfile: UserProfile? = null
+	val userProfile: UserProfile? = null,
+
+	@field:SerializedName("listsByWeek")
+	val listsByWeek: List<ListsByWeekItem?>? = null
+)
+
+data class ListsByWeekItem(
+
+	@field:SerializedName("week")
+	val week: String? = null,
+
+	@field:SerializedName("total_expenses")
+	val totalExpenses: Int? = null,
+
+	@field:SerializedName("total_items")
+	val totalItems: Int? = null
 )
