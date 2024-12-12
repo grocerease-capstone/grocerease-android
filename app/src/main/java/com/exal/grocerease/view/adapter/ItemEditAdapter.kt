@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.exal.grocerease.databinding.ItemEditItemBinding
 import com.exal.grocerease.helper.rupiahFormatter
-import com.exal.grocerease.model.network.response.DetailItemsItem
+import com.exal.grocerease.model.network.response.ProductItemsItem
 
-class ItemEditAdapter(private val onEdit: (DetailItemsItem) -> Unit): ListAdapter<DetailItemsItem, ItemEditAdapter.ItemViewHolder>(DIFF_CALLBACK){
+class ItemEditAdapter(private val onEdit: (ProductItemsItem) -> Unit): ListAdapter<ProductItemsItem, ItemEditAdapter.ItemViewHolder>(DIFF_CALLBACK){
 
     private val categoryMapping = mapOf(
         "0" to "Food",
@@ -23,7 +23,7 @@ class ItemEditAdapter(private val onEdit: (DetailItemsItem) -> Unit): ListAdapte
     )
 
     inner class ItemViewHolder(private val binding: ItemEditItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: DetailItemsItem) {
+        fun bind(item: ProductItemsItem) {
             val category = item.category
             Log.d("ItemEditAdapter", "Category: $category")
             with(binding) {
@@ -49,12 +49,12 @@ class ItemEditAdapter(private val onEdit: (DetailItemsItem) -> Unit): ListAdapte
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DetailItemsItem>(){
-            override fun areItemsTheSame(oldItem: DetailItemsItem, newItem: DetailItemsItem): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ProductItemsItem>(){
+            override fun areItemsTheSame(oldItem: ProductItemsItem, newItem: ProductItemsItem): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: DetailItemsItem, newItem: DetailItemsItem): Boolean {
+            override fun areContentsTheSame(oldItem: ProductItemsItem, newItem: ProductItemsItem): Boolean {
                 return oldItem == newItem
             }
         }

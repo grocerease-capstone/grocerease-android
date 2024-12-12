@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.exal.grocerease.databinding.ItemDetailListBinding
 import com.exal.grocerease.helper.rupiahFormatter
-import com.exal.grocerease.model.network.response.DetailItemsItem
+import com.exal.grocerease.model.network.response.ProductItemsItem
 
-class DetailExpenseAdapter: ListAdapter<DetailItemsItem, DetailExpenseAdapter.ItemViewHolder>(DIFF_CALLBACK){
+class DetailExpenseAdapter: ListAdapter<ProductItemsItem, DetailExpenseAdapter.ItemViewHolder>(DIFF_CALLBACK){
 
     private val categoryMapping = mapOf(
         "0" to "Food",
@@ -23,7 +23,7 @@ class DetailExpenseAdapter: ListAdapter<DetailItemsItem, DetailExpenseAdapter.It
     )
 
     inner class ItemViewHolder(private val binding: ItemDetailListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: DetailItemsItem) {
+        fun bind(item: ProductItemsItem) {
             with(binding) {
                 itemName.text = item.name
                 itemCategory.text = categoryMapping[item.category]
@@ -49,12 +49,12 @@ class DetailExpenseAdapter: ListAdapter<DetailItemsItem, DetailExpenseAdapter.It
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DetailItemsItem>(){
-            override fun areItemsTheSame(oldItem: DetailItemsItem, newItem: DetailItemsItem): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ProductItemsItem>(){
+            override fun areItemsTheSame(oldItem: ProductItemsItem, newItem: ProductItemsItem): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: DetailItemsItem, newItem: DetailItemsItem): Boolean {
+            override fun areContentsTheSame(oldItem: ProductItemsItem, newItem: ProductItemsItem): Boolean {
                 return oldItem == newItem
             }
         }

@@ -146,7 +146,7 @@ class DetailExpenseActivity : AppCompatActivity() {
         intent.putExtra(EditListDetailActivity.EXTRA_EXPENSE_TITLE, expenseTitle)
         intent.putExtra("list_type", type)
 
-        val detailItems = viewModel.productList.value?.data?.data?.detailItems.orEmpty()
+        val detailItems = viewModel.productList.value?.data?.data?.detailList?.productItems.orEmpty()
         val detailItems2 = detailItems.forEach {
             Log.d("DetailExpenseActivity", "Detail Item: ${it.toString()}")
             it?.category?.toInt()
@@ -167,11 +167,11 @@ class DetailExpenseActivity : AppCompatActivity() {
         binding.itemRv.adapter = adapter
 
         viewModel.productList.observe(this) {
-            Log.d("DetailExpenseActivity", "Product List: ${it.data?.data?.detailItems}")
-            adapter.submitList(it.data?.data?.detailItems)
+            Log.d("DetailExpenseActivity", "Product List: ${it.data?.data?.detailList?.productItems}")
+            adapter.submitList(it.data?.data?.detailList?.productItems)
 
             var totalPrice = 0
-            it.data?.data?.detailItems?.forEach { item ->
+            it.data?.data?.detailList?.productItems?.forEach { item ->
                 totalPrice += item?.totalPrice?.toDoubleOrNull()?.toInt() ?: 0
             }
             binding.totalPriceTv.text = "Total : " + rupiahFormatter(totalPrice)

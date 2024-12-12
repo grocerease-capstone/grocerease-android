@@ -17,24 +17,12 @@ data class DetailListResponse(
     val status: Boolean? = null
 )
 
-data class Data2(
-
-    @field:SerializedName("detailItems")
-    val detailItems: List<DetailItemsItem?>? = null,
-
-    @field:SerializedName("receipt_image")
-    val receiptImage: String? = null,
-
-    @field:SerializedName("thumbnail_image")
-    val thumbnailImage: String? = null
-)
-
-data class DetailItemsItem(
+data class ProductItemsItem(
 
     @field:SerializedName("amount")
     val amount: Int? = null,
 
-    @field:SerializedName("total_price")
+    @field:SerializedName("totalPrice")
     val totalPrice: String? = null,
 
     @field:SerializedName("price")
@@ -48,5 +36,29 @@ data class DetailItemsItem(
 
     @field:SerializedName("category")
     val category: String? = null
+)
+
+data class DetailList(
+
+    @field:SerializedName("boughtAt")
+    val boughtAt: String? = null,
+
+    @field:SerializedName("receiptImage")
+    val receiptImage: String? = null,
+
+    @field:SerializedName("title")
+    val title: String? = null,
+
+    @field:SerializedName("thumbnailImage")
+    val thumbnailImage: String? = null,
+
+    @field:SerializedName("Product_Items")
+    val productItems: List<ProductItemsItem?>? = null
+)
+
+data class Data2(
+
+    @field:SerializedName("detailList")
+    val detailList: DetailList? = null
 )
 

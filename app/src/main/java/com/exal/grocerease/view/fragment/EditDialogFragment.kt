@@ -13,7 +13,7 @@ import android.widget.AutoCompleteTextView
 import androidx.fragment.app.DialogFragment
 import com.exal.grocerease.databinding.AddManualDialogFragmentBinding
 import com.exal.grocerease.helper.rupiahFormatter
-import com.exal.grocerease.model.network.response.DetailItemsItem
+import com.exal.grocerease.model.network.response.ProductItemsItem
 import kotlin.text.toIntOrNull
 
 class EditDialogFragment : DialogFragment() {
@@ -33,8 +33,8 @@ class EditDialogFragment : DialogFragment() {
 
     private val reverseCategoryMapping = categoryMapping.entries.associate { (key, value) -> value to key }
 
-    private var detailItemsItem: DetailItemsItem? = null
-    private var onUpdateItemListener: ((DetailItemsItem) -> Unit)? = null
+    private var detailItemsItem: ProductItemsItem? = null
+    private var onUpdateItemListener: ((ProductItemsItem) -> Unit)? = null
 
     override fun onResume() {
         super.onResume()
@@ -133,11 +133,11 @@ class EditDialogFragment : DialogFragment() {
         binding.tvTotal.text = rupiahFormatter(totalPrice)
     }
 
-    fun setDetailItem(item: DetailItemsItem) {
+    fun setDetailItem(item: ProductItemsItem) {
         detailItemsItem = item
     }
 
-    fun setOnUpdateItemListener(listener: (DetailItemsItem) -> Unit) {
+    fun setOnUpdateItemListener(listener: (ProductItemsItem) -> Unit) {
         onUpdateItemListener = listener
     }
 

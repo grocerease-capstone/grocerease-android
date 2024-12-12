@@ -16,7 +16,7 @@ import com.exal.grocerease.databinding.ActivityEditListDetailBinding
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.rupiahFormatter
 import com.exal.grocerease.model.network.request.ProductItem
-import com.exal.grocerease.model.network.response.DetailItemsItem
+import com.exal.grocerease.model.network.response.ProductItemsItem
 import com.exal.grocerease.model.network.response.ProductsItem
 import com.exal.grocerease.model.network.response.UpdateListResponse
 import com.exal.grocerease.view.adapter.ItemAdapter
@@ -51,7 +51,7 @@ class EditListDetailActivity : AppCompatActivity() {
         Log.d("EditListDetailActivity", "Expense ID: $expenseId, Title: $expenseTitle")
 
         val jsonList = intent.getStringExtra(EXTRA_DETAIL_LIST)
-        val detailItems: List<DetailItemsItem> = Gson().fromJson(jsonList, object : TypeToken<List<DetailItemsItem>>() {}.type)
+        val detailItems: List<ProductItemsItem> = Gson().fromJson(jsonList, object : TypeToken<List<ProductItemsItem>>() {}.type)
         Log.d("EditListDetailActivity", "JSON List: $jsonList")
         val type = intent.getStringExtra("list_type")
         Log.d("EditListDetailActivity", "Type: $type")

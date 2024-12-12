@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.exal.grocerease.helper.Resource
-import com.exal.grocerease.model.network.response.DetailItemsItem
+import com.exal.grocerease.model.network.response.ProductItemsItem
 import com.exal.grocerease.model.network.response.UpdateListResponse
 import com.exal.grocerease.model.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,13 +16,13 @@ import javax.inject.Inject
 @HiltViewModel
 class EditListDetailViewModel @Inject constructor(private val dataRepository: DataRepository) :
     ViewModel() {
-    private val _productList = MutableLiveData<List<DetailItemsItem>>()
-    val productList: LiveData<List<DetailItemsItem>> get() = _productList
+    private val _productList = MutableLiveData<List<ProductItemsItem>>()
+    val productList: LiveData<List<ProductItemsItem>> get() = _productList
 
     private val _totalPrice = MutableLiveData<Int>()
     val totalPrice: LiveData<Int> get() = _totalPrice
 
-    fun setInitialProductList(products: List<DetailItemsItem>) {
+    fun setInitialProductList(products: List<ProductItemsItem>) {
         _productList.value = products
         val newTotalPrice = products.sumOf { (it.price?.toDouble()?.toInt() ?: 0) * (it.amount ?: 0) }
         _totalPrice.value = newTotalPrice
@@ -44,7 +44,7 @@ class EditListDetailViewModel @Inject constructor(private val dataRepository: Da
         totalItems
     )
 
-    fun updateProduct(product: DetailItemsItem) {
+    fun updateProduct(product: ProductItemsItem) {
         _productList.value = _productList.value?.map {
             if (it.id == product.id) product else it
         }

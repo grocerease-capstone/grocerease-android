@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.exal.grocerease.databinding.ItemEditItemBinding
 import com.exal.grocerease.databinding.ItemNotificationBinding
 import com.exal.grocerease.helper.rupiahFormatter
-import com.exal.grocerease.model.network.response.DetailItemsItem
 import com.exal.grocerease.model.network.response.RequestDetailItem
 import com.exal.grocerease.viewmodel.NotificationViewModel
 
