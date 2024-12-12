@@ -75,7 +75,7 @@ class NotificationActivity : AppCompatActivity() {
     }
 
     private fun observeDecline(){
-        viewModel.acceptNotification.observe(this) { resource ->
+        viewModel.declineNotification.observe(this) { resource ->
             when (resource) {
                 is Resource.Loading -> {
                     showLoading(true)
