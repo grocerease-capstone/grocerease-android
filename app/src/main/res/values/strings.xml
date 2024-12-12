@@ -72,7 +72,7 @@
     <string name="insert_email_and_password">Please insert your email and password to Log into your account!</string>
     <string name="sign_up_here">Don\'t have an account? Sign Up here!</string>
     <string name="items"> Items</string>
-    <string name="data_from_the_last">Data from the last 28 days</string>
+    <string name="data_from_the_last">Data from the last 4 weeks</string>
     <string name="username">Username</string>
     <string name="email">Email</string>
     <string name="monthly_expense">Monthly Expense</string>
