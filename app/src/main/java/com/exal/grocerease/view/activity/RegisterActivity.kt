@@ -62,7 +62,7 @@ class RegisterActivity : AppCompatActivity() {
                 val password = createRequestBody(passwordText)
                 val confirmPassword = createRequestBody(confirmPasswordText)
 
-                val drawable = AppCompatResources.getDrawable(this, R.drawable.avatar)
+                val drawable = AppCompatResources.getDrawable(this, R.drawable.default_avatar)
                 val file = File.createTempFile("default_profile", ".jpg", cacheDir)
                 file.outputStream().use {
                     val bitmap = (drawable as BitmapDrawable).bitmap

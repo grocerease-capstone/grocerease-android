@@ -73,7 +73,7 @@ class DetailExpenseActivity : AppCompatActivity() {
 
         binding.activityTxt.text = titleText
 
-        binding.dateTv.text = DateFormatter.localizeDate(expenseDate ?: "")
+        binding.dateTv.text = DateFormatter.localizeDate(expenseDate)
 
         val expenseId = intent.getIntExtra(EXTRA_EXPENSE_ID, -1)
         if (expenseId != -1) {
@@ -190,7 +190,7 @@ class DetailExpenseActivity : AppCompatActivity() {
             Glide.with(this)
                 .load(it.data?.data?.detailList?.thumbnailImage)
                 .apply(
-                    RequestOptions.placeholderOf(R.drawable.avatar)
+                    RequestOptions.placeholderOf(R.drawable.default_avatar)
                         .error(R.drawable.ic_close)
                 )
                 .into(binding.imageView)
