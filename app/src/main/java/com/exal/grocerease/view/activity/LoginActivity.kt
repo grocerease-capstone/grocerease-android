@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -12,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.exal.grocerease.databinding.ActivityLoginBinding
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.manager.EmailManager
-import com.exal.grocerease.helper.manager.IntroManager
 import com.exal.grocerease.viewmodel.LoginViewModel
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
@@ -34,7 +32,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //get fcm Token
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 return@OnCompleteListener
@@ -86,28 +83,14 @@ class LoginActivity : AppCompatActivity() {
         binding.root.foreground = null
     }
 
-//    Uncomment this function if you want to generate a unique device ID
-//    fun getOrCreateDeviceId(context: Context): String {
-//        val sharedPreferences = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
-//        val deviceIdKey = "device_id"
-//
-//        var deviceId = sharedPreferences.getString(deviceIdKey, null)
-//        if (deviceId == null) {
-//            deviceId = UUID.randomUUID().toString()
-//            sharedPreferences.edit().putString(deviceIdKey, deviceId).apply()
-//        }
-//        return deviceId
-//    }
-
     private fun setupListeners() {
         binding.loginButton.setOnClickListener {
             val username = binding.textFieldEmail.editText?.text.toString()
             val password = binding.textFieldPassword.editText?.text.toString()
-//            val deviceId = getOrCreateDeviceId(this) // Generate or retrieve the device ID and use it on the api if needed
             if (username.isNotBlank() && password.isNotBlank()) {
                 loginViewModel.login(username, password, fcmToken)
             } else {
-                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Isi semua field terlebih dahulu", Toast.LENGTH_SHORT).show()
             }
         }
     }

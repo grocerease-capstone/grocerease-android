@@ -8,7 +8,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.exal.grocerease.R
@@ -17,7 +16,6 @@ import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.view.adapter.NotificationAdapter
 import com.exal.grocerease.viewmodel.NotificationViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class NotificationActivity : AppCompatActivity() {
@@ -84,7 +82,7 @@ class NotificationActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     showLoading(false)
                     viewModel.getNotificationList()
-                    showMessage("Notification declined successfully")
+                    showMessage("Daftar berhasil ditolak")
                 }
 
                 is Resource.Error -> {
@@ -104,7 +102,7 @@ class NotificationActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     showLoading(false)
                     viewModel.getNotificationList()
-                    showMessage("Notification accepted successfully")
+                    showMessage("Daftar berhasil diterima")
                 }
                 is Resource.Error -> {
                     showLoading(false)

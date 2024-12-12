@@ -4,6 +4,8 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -26,9 +28,8 @@ import com.exal.grocerease.R
 import com.exal.grocerease.databinding.ActivityCreateListBinding
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.rupiahFormatter
-import com.exal.grocerease.model.network.response.PostListResponse
-import com.exal.grocerease.model.network.request.ProductItem
 import com.exal.grocerease.model.network.request.ProductItemPost
+import com.exal.grocerease.model.network.response.PostListResponse
 import com.exal.grocerease.model.network.response.ProductsItem
 import com.exal.grocerease.view.adapter.ItemAdapter
 import com.exal.grocerease.view.fragment.AddManualExpenseDialogFragment
@@ -259,15 +260,23 @@ class CreateListActivity : AppCompatActivity() {
     private fun handleResource(resource: Resource<PostListResponse>) {
         when (resource) {
             is Resource.Loading -> {
-                Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+                binding.progressBar.visibility = View.VISIBLE
+                binding.saveButton.isEnabled = false
+                binding.cardCreateList.isEnabled = false
+                binding.fabBottomAppBar.isEnabled = false
+                binding.root.foreground = ColorDrawable(Color.parseColor("#80000000"))
             }
             is Resource.Success -> {
+                resetUIState()
+                binding.progressBar.visibility = View.GONE
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("TARGET_FRAGMENT", "ExpensesFragment")
                 startActivity(intent)
                 finish()
             }
             is Resource.Error -> {
+                resetUIState()
+                binding.progressBar.visibility = View.GONE
                 Log.d("CreateListActivity", "Error: ${resource.message}")
                 Toast.makeText(this, "Error ${resource.message}", Toast.LENGTH_SHORT).show()
             }
@@ -346,6 +355,14 @@ class CreateListActivity : AppCompatActivity() {
             binding.fabScanReceipt.isClickable = false
             binding.fabAddManual.isClickable = false
         }
+    }
+
+    private fun resetUIState() {
+        binding.progressBar.visibility = View.GONE
+        binding.saveButton.isEnabled = true
+        binding.cardCreateList.isEnabled = true
+        binding.fabBottomAppBar.isEnabled = true
+        binding.root.foreground = null
     }
 
     companion object {

@@ -36,7 +36,6 @@ class ShareListActivity : AppCompatActivity() {
         }
         adapter = SharedListAdapter(
             onItemClick = { id, title, boughtAt, type ->
-                Toast.makeText(this, "Item $id clicked", Toast.LENGTH_SHORT).show()
                 navigateToDetail(id, title, boughtAt, type)
             }
         )

@@ -62,19 +62,19 @@ class ResetPasswordActivity : AppCompatActivity() {
 
         when {
             passwordOld!!.isEmpty() -> {
-                showToast("Please enter your old password.")
+                showToast("Masukkan Kata Sandi lama anda.")
             }
             passwordNew!!.isEmpty() -> {
-                showToast("Please enter a new password.")
+                showToast("Masukkan Kata Sandi baru anda.")
             }
             repeatPassword.isEmpty() -> {
-                showToast("Please repeat the new password.")
+                showToast("Masukkan ulang Kata Sandi baru anda.")
             }
             passwordNew != repeatPassword -> {
-                showToast("New Password and Repeat Password do not match.")
+                showToast("Kata Sandi tidak sama.")
             }
             passwordNew!!.length < 8 -> {
-                showToast("New Password must be at least 8 characters.")
+                showToast("Kata Sandi harus lebih dari 8 karakter.")
             }
             else -> {
                 handleSaveButtonClick()

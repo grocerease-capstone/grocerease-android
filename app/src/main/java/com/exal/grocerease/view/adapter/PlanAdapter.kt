@@ -14,7 +14,7 @@ class PlanAdapter(private val onItemClick: (Int, String, String) -> Unit): Pagin
     inner class ItemViewHolder(private val binding: ItemPlanListBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ListEntity) {
             binding.titleTv.text = item.title
-            "${item.totalItems} Items".also { binding.totalTv.text = it }
+            "${item.totalItems} Item".also { binding.totalTv.text = it }
             binding.dayTv.text = DateFormatter.localizeDay(item.boughtAt ?: "")
             binding.dateTv.text = DateFormatter.localizeMonth(item.boughtAt ?: "")
             binding.yearTv.text = DateFormatter.localizeYear(item.boughtAt ?: "")

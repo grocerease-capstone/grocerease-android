@@ -2,14 +2,11 @@ package com.exal.grocerease.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.appcompat.view.menu.MenuAdapter
 import androidx.compose.material3.MaterialTheme
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.exal.grocerease.R
 import com.exal.grocerease.databinding.FragmentProfileBinding
-import com.exal.grocerease.helper.MonthYearPickerDialog
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.compose.LineSample
 import com.exal.grocerease.helper.manager.EmailManager
@@ -31,7 +27,6 @@ import com.exal.grocerease.view.adapter.MenuProfileAdapter
 import com.exal.grocerease.viewmodel.ProfileViewModel
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.DateFormatSymbols
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -68,9 +63,9 @@ class ProfileFragment : Fragment() {
         observeAccount()
 
         val menuItems = listOf(
-            MenuItem("Account Settings", R.drawable.ic_account_settings),
-            MenuItem("App Setting", R.drawable.ic_setting),
-            MenuItem("Logout", R.drawable.ic_logout)
+            MenuItem("Pengaturan Akun", R.drawable.ic_account_settings),
+            MenuItem("Pengaturan Aplikasi", R.drawable.ic_setting),
+            MenuItem("Keluar", R.drawable.ic_logout)
         )
 
         val adapter = MenuProfileAdapter(requireContext(), menuItems)

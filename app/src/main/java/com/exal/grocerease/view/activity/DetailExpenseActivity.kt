@@ -56,16 +56,16 @@ class DetailExpenseActivity : AppCompatActivity() {
         val expenseType = intent.getStringExtra(EXTRA_EXPENSE_TYPE)
         typeActivity = intent.getStringExtra(EXTRA_TYPE_ACTIVITY)
 
-        var titleText = "Detail Expense"
+        var titleText = "Detail Pengeluaran"
 
         if (expenseType == "Plan") {
-            titleText = "Detail Plan"
+            titleText = "Detail Rencana"
             binding.cardImage.visibility = View.GONE
             binding.shareBtn.visibility = View.GONE
         }
 
         if (typeActivity == "Share") {
-            titleText = "Detail Share"
+            titleText = "Detail Pengeluaran"
             binding.editBtn.visibility = View.GONE
             binding.shareBtn.visibility = View.GONE
             binding.deleteBtn.visibility = View.GONE

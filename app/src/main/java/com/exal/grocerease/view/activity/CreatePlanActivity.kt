@@ -1,8 +1,11 @@
 package com.exal.grocerease.view.activity
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -169,18 +172,35 @@ class CreatePlanActivity : AppCompatActivity() {
     private fun handleResource(resource: Resource<PostListResponse>) {
         when (resource) {
             is Resource.Loading -> {
-                Toast.makeText(this, "Loading", Toast.LENGTH_SHORT).show()
+                binding.progressBar.visibility = View.VISIBLE
+                binding.saveButton.isEnabled = false
+                binding.cardCreateList.isEnabled = false
+                binding.fabBottomAppBar.isEnabled = false
+                binding.root.foreground = ColorDrawable(Color.parseColor("#80000000"))
             }
             is Resource.Success -> {
+                resetUIState()
+                binding.progressBar.visibility = View.GONE
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("TARGET_FRAGMENT", "PlanFragment")
                 startActivity(intent)
                 finish()
             }
             is Resource.Error -> {
+                resetUIState()
+                binding.progressBar.visibility = View.GONE
                 Log.d("CreateListActivity", "Error: ${resource.message}")
                 Toast.makeText(this, "Error ${resource.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
+    private fun resetUIState() {
+        binding.progressBar.visibility = View.GONE
+        binding.saveButton.isEnabled = true
+        binding.cardCreateList.isEnabled = true
+        binding.fabBottomAppBar.isEnabled = true
+        binding.root.foreground = null
+    }
+
 }

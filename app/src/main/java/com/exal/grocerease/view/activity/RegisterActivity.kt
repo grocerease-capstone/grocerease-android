@@ -35,10 +35,6 @@ class RegisterActivity : AppCompatActivity() {
 
         setupObservers()
         setupListener()
-
-        binding.privacyPolicy.setOnClickListener {
-            //TODO: Implement go to privacy policy
-        }
     }
 
     private fun createRequestBody(value: String?): okhttp3.RequestBody =
@@ -53,7 +49,7 @@ class RegisterActivity : AppCompatActivity() {
 
             if (usernameText.isNotBlank() && emailText.isNotBlank() && passwordText.isNotBlank()) {
                 if (passwordText != confirmPasswordText) {
-                    Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Kata Sandi tidak sama", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
 
@@ -75,7 +71,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 registerViewModel.register(username, email, password, confirmPassword, profileImage)
             } else {
-                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Isi semua field terlebih dahulu", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -86,15 +82,17 @@ class RegisterActivity : AppCompatActivity() {
                 is Resource.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
                     binding.loginButton.isEnabled = false
+                    binding.textFieldUsername.isEnabled = false
                     binding.textFieldEmail.isEnabled = false
                     binding.textFieldPassword.isEnabled = false
+                    binding.textFieldConfirmPassword.isEnabled = false
                     binding.root.foreground = ColorDrawable(Color.parseColor("#80000000"))
                 }
 
                 is Resource.Success -> {
                     resetUIState()
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Registrasi sukses", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                     finish()
@@ -113,8 +111,10 @@ class RegisterActivity : AppCompatActivity() {
     private fun resetUIState() {
         binding.progressBar.visibility = View.GONE
         binding.loginButton.isEnabled = true
+        binding.textFieldUsername.isEnabled = true
         binding.textFieldEmail.isEnabled = true
         binding.textFieldPassword.isEnabled = true
+        binding.textFieldConfirmPassword.isEnabled = true
         binding.root.foreground = null
     }
 }

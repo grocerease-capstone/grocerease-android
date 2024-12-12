@@ -75,6 +75,16 @@ class PlanFragment : Fragment() {
             }.show()
         }
 
+        binding.resetBtn.setOnClickListener {
+            lifecycleScope.launch {
+                planViewModel.getLists("Plan")
+                planViewModel.planList.observe(viewLifecycleOwner) { pagingData ->
+                    pagingAdapter.submitData(lifecycle, pagingData)
+                }
+            }
+            binding.resetBtn.visibility = View.GONE
+        }
+
         binding.floatingActionButton.setOnClickListener {
             val intent = Intent(requireContext(), CreatePlanActivity::class.java)
             startActivity(intent)

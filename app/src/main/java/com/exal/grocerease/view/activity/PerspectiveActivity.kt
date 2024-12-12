@@ -94,7 +94,7 @@ class PerspectiveActivity : AppCompatActivity() {
             }
             with(binding){
                 nextBtn.isEnabled = true
-                nextBtn.text = "Next"
+                nextBtn.text = "Lanjutkan"
             }
         }
 

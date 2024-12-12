@@ -10,7 +10,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.exal.grocerease.R
 import com.exal.grocerease.databinding.ActivityAppSettingsBinding
-import com.exal.grocerease.databinding.BottomSheetLanguageBinding
 import com.exal.grocerease.databinding.BottomSheetThemeBinding
 import com.exal.grocerease.helper.manager.ThemeManager
 import com.exal.grocerease.view.adapter.MenuAppSettingAdapter
@@ -32,9 +31,8 @@ class AppSettingsActivity : AppCompatActivity() {
         }
 
         val menuItemsApp = listOf(
-            MenuItemApp("Theme", R.drawable.ic_theme),
-            MenuItemApp("Language", R.drawable.ic_language),
-            MenuItemApp("About App", R.drawable.ic_info)
+            MenuItemApp("Tema", R.drawable.ic_theme),
+            MenuItemApp("Tentang Aplikasi", R.drawable.ic_info)
         )
 
         val adapter = MenuAppSettingAdapter(this, menuItemsApp)
@@ -43,8 +41,7 @@ class AppSettingsActivity : AppCompatActivity() {
         binding.listViewMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             when (position) {
                 0 -> showThemeBottomSheet()
-                1 -> showLanguageBottomSheet()
-                2 -> Toast.makeText(this, "About App", Toast.LENGTH_SHORT).show()
+                1 -> Toast.makeText(this, "About App", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -55,24 +52,20 @@ class AppSettingsActivity : AppCompatActivity() {
         val bottomSheetDialog = BottomSheetDialog(this)
         bottomSheetDialog.setContentView(bottomSheetBinding.root)
 
-        // Mendapatkan status Dark Mode dari ThemeManager
         val themeManager = ThemeManager(getSharedPreferences("app_prefs", MODE_PRIVATE))
         val isDarkModeEnabled = themeManager.isDarkModeEnabled()
 
-        // Menyesuaikan RadioButton dengan status Dark Mode
         if (isDarkModeEnabled) {
             bottomSheetBinding.radioDarkMode.isChecked = true
         } else {
             bottomSheetBinding.radioLightMode.isChecked = true
         }
 
-        // Simpan pilihan tema
         bottomSheetBinding.btnSave.setOnClickListener {
             val isDarkModeSelected = bottomSheetBinding.radioDarkMode.isChecked
             themeManager.saveDarkModeEnabled(isDarkModeSelected)
             bottomSheetDialog.dismiss()
 
-            // Terapkan tema baru
             applyTheme(isDarkModeSelected)
         }
 
@@ -85,39 +78,5 @@ class AppSettingsActivity : AppCompatActivity() {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
-    }
-
-    private fun showLanguageBottomSheet() {
-        // Inflate layout BottomSheet
-        val bottomSheetBinding = BottomSheetLanguageBinding.inflate(layoutInflater)
-
-        // Initialize BottomSheetDialog
-        val bottomSheetDialog = BottomSheetDialog(this)
-        bottomSheetDialog.setContentView(bottomSheetBinding.root)
-
-        // Get current language preference
-//        val currentLanguage = getCurrentLanguage()
-//        if (currentLanguage == "id") {
-//            bottomSheetBinding.radioIndonesian.isChecked = true
-//        } else {
-//            bottomSheetBinding.radioEnglish.isChecked = true
-//        }
-
-        // Save button click listener
-//        bottomSheetBinding.btnSaveLanguage.setOnClickListener {
-//            val selectedLanguage = when (bottomSheetBinding.radioGroupLanguage.checkedRadioButtonId) {
-//                R.id.radioIndonesian -> "id"
-//                R.id.radioEnglish -> "en"
-//                else -> "en"
-//            }
-//            setLanguagePreference(selectedLanguage)
-//            bottomSheetDialog.dismiss()
-//
-//            // Apply language change (restart activity to apply localization)
-//            applyLanguage(selectedLanguage)
-//        }
-
-        // Show BottomSheet
-        bottomSheetDialog.show()
     }
 }

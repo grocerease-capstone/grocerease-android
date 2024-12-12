@@ -1,15 +1,11 @@
 package com.exal.grocerease.view.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.exal.grocerease.databinding.ItemEditItemBinding
 import com.exal.grocerease.databinding.ItemNotificationBinding
-import com.exal.grocerease.helper.rupiahFormatter
 import com.exal.grocerease.model.network.response.RequestDetailItem
 import com.exal.grocerease.viewmodel.NotificationViewModel
 
@@ -21,7 +17,7 @@ class NotificationAdapter(private val viewModel: NotificationViewModel) :
         fun bind(item: RequestDetailItem, viewModel: NotificationViewModel) {
             binding.contentText.text = buildString {
                 append(item.username)
-                append(" shared a list: ")
+                append(" membagikan daftar pengeluran : ")
                 append(item.title)
             }
             binding.acceptBtn.setOnClickListener {

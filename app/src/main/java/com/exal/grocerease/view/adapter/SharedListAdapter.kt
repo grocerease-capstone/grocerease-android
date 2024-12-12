@@ -2,14 +2,11 @@ package com.exal.grocerease.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.exal.grocerease.databinding.ItemPlanListBinding
 import com.exal.grocerease.databinding.ItemSharedListBinding
 import com.exal.grocerease.helper.DateFormatter
-import com.exal.grocerease.model.db.entities.ListEntity
 import com.exal.grocerease.model.network.response.AllDetailListItem
 
 class SharedListAdapter(private val onItemClick: (Int, String, String, String) -> Unit): ListAdapter<AllDetailListItem, SharedListAdapter.ItemViewHolder>(DIFF_CALLBACK){
@@ -17,7 +14,7 @@ class SharedListAdapter(private val onItemClick: (Int, String, String, String) -
     inner class ItemViewHolder(private val binding: ItemSharedListBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: AllDetailListItem) {
             binding.titleTv.text = item.title
-            "${item.totalItems} Items".also { binding.totalTv.text = it }
+            "${item.totalItems} Item".also { binding.totalTv.text = it }
             binding.dayTv.text = DateFormatter.localizeDay(item.boughtAt ?: "")
             binding.dateTv.text = DateFormatter.localizeMonth(item.boughtAt ?: "")
             binding.yearTv.text = DateFormatter.localizeYear(item.boughtAt ?: "")
