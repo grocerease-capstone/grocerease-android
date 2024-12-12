@@ -7,7 +7,7 @@ object DateFormatter {
     fun localizeDate(utcDate: String): String {
         return try {
             val utcFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-            utcFormat.timeZone = TimeZone.getTimeZone("UTC")
+            utcFormat.timeZone = TimeZone.getTimeZone("Asia/Jakarta")
             val date: Date? = utcFormat.parse(utcDate)
 
             val localFormat = SimpleDateFormat("EEEE, dd MMMM yyyy, HH:mm:ss", Locale.getDefault())
@@ -23,7 +23,7 @@ object DateFormatter {
     fun localizeDay(utcDate: String): String {
         return try {
             val utcFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-            utcFormat.timeZone = TimeZone.getTimeZone("UTC")
+            utcFormat.timeZone = TimeZone.getTimeZone("Asia/Jakarta")
             val date: Date? = utcFormat.parse(utcDate)
 
             val localFormat = SimpleDateFormat("EEEE", Locale.getDefault())
@@ -39,7 +39,7 @@ object DateFormatter {
     fun localizeMonth(utcDate: String): String {
         return try {
             val utcFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-            utcFormat.timeZone = TimeZone.getTimeZone("UTC")
+            utcFormat.timeZone = TimeZone.getTimeZone("Asia/Jakarta")
             val date: Date? = utcFormat.parse(utcDate)
 
             val localFormat = SimpleDateFormat("dd MMM", Locale.getDefault())
@@ -55,7 +55,7 @@ object DateFormatter {
     fun localizeYear(utcDate: String): String {
         return try {
             val utcFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-            utcFormat.timeZone = TimeZone.getTimeZone("UTC")
+            utcFormat.timeZone = TimeZone.getTimeZone("Asia/Jakarta")
             val date: Date? = utcFormat.parse(utcDate)
 
             val localFormat = SimpleDateFormat("YYYY", Locale.getDefault())
