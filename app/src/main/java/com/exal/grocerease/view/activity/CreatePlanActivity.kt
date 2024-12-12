@@ -17,9 +17,9 @@ import com.exal.grocerease.helper.DateFormatter
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.view.adapter.ItemAdapter
 import com.exal.grocerease.view.fragment.AddManualPlanDialogFragment
-import com.exal.grocerease.viewmodel.CreatePlanViewModel
-import com.exal.grocerease.model.network.request.ProductItem
+import com.exal.grocerease.model.network.request.ProductItemPost
 import com.exal.grocerease.model.network.response.PostListResponse
+import com.exal.grocerease.viewmodel.CreatePlanViewModel
 import com.google.gson.Gson
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -28,7 +28,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
-import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
@@ -132,7 +131,7 @@ class CreatePlanActivity : AppCompatActivity() {
             val productItemsRequestBody = createRequestBody(
                 Gson().toJson(
                     viewModel.productList.value?.map {
-                        ProductItem(it.id, it.name, it.amount, it.price, it.detail?.categoryIndex.toString(), it.totalPrice)
+                        ProductItemPost(it.name, it.amount, it.price, it.detail?.categoryIndex.toString(), it.totalPrice)
                     }
                 )
             )
@@ -142,8 +141,8 @@ class CreatePlanActivity : AppCompatActivity() {
 
             if (boughtAtUser == getString(R.string.today)){
                 val currentDate = System.currentTimeMillis()
-                val dateFormat = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault())
-                val formattedDate = dateFormat.format(java.util.Date(currentDate))
+                val dateFormat = java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+                val formattedDate = dateFormat.format(Date(currentDate))
                 boughtAtUser = formattedDate
             }
 
