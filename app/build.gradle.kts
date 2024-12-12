@@ -29,6 +29,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"${project.properties["BASE_URL"]}\"")
+        buildConfigField("String", "BASE_URL_ML", "\"${project.properties["BASE_URL_ML"]}\"")
     }
 
     buildTypes {
@@ -45,6 +48,7 @@ android {
     buildFeatures {
         viewBinding = true
         compose = true
+        buildConfig = true
     }
 
     composeOptions {

@@ -1,8 +1,8 @@
 package com.exal.grocerease.view.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.AdapterView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -41,7 +41,10 @@ class AppSettingsActivity : AppCompatActivity() {
         binding.listViewMenu.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             when (position) {
                 0 -> showThemeBottomSheet()
-                1 -> Toast.makeText(this, "About App", Toast.LENGTH_SHORT).show()
+                1 -> {
+                    val intent = Intent(this, AboutAppActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
 

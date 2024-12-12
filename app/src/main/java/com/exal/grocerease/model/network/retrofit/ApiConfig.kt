@@ -1,5 +1,6 @@
 package com.exal.grocerease.model.network.retrofit
 
+import com.exal.grocerease.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -8,8 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class ApiConfig {
-    private val BASE_URL = "https://grocerease-be-407517281668.asia-southeast2.run.app"
-    private val BASE_URL_ML = "https://mlmodelapi-407517281668.asia-southeast2.run.app"
+    private val BASE_URL = BuildConfig.BASE_URL
+    private val BASE_URL_ML = BuildConfig.BASE_URL_ML
 
     fun getApiService(): ApiServices {
         val loggingInterceptor =
