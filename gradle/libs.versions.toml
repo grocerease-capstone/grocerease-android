@@ -3,7 +3,6 @@ agp = "8.5.2"
 appintro = "6.3.1"
 circleimageview = "3.1.0"
 composeCharts = "0.0.17"
-firebaseBom = "33.7.0"
 foundationLayout = "1.7.5"
 kotlin = "1.9.22"
 coreKtx = "1.13.1"
@@ -45,9 +44,6 @@ androidx-foundation-layout = { module = "androidx.compose.foundation:foundation-
 appintro = { module = "com.github.AppIntro:AppIntro", version.ref = "appintro" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 compose-charts = { module = "io.github.ehsannarmani:compose-charts", version.ref = "composeCharts" }
-firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
-firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
-firebase-messaging = { module = "com.google.firebase:firebase-messaging" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
