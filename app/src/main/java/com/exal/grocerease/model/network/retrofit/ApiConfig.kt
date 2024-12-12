@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class ApiConfig {
-    private val BASE_URL = "ee23-149-113-96-62.ngrok-free.app" //TODO : Change into your server url
+    private val BASE_URL = "https://grocerease-be-407517281668.asia-southeast2.run.app"
     private val BASE_URL_ML = "https://mlmodelapi-407517281668.asia-southeast2.run.app"
 
     fun getApiService(): ApiServices {

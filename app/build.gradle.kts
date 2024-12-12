@@ -82,9 +82,9 @@ dependencies {
     implementation(libs.androidx.exifinterface)
 
     // Compose Stuff lib
-    implementation("androidx.activity:activity-compose:1.9.3")
-    implementation("androidx.compose.foundation:foundation-layout:1.7.5")
-    implementation("io.github.ehsannarmani:compose-charts:0.0.17")
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.foundation.layout)
+    implementation(libs.compose.charts)
 
     // Material 3 lib
     implementation(libs.androidx.material3.android)
@@ -93,13 +93,13 @@ dependencies {
     implementation(libs.smoothbottombar)
 
     // Circle Image view lib
-    implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation(libs.circleimageview)
 
     // App intro lib
-    implementation("com.github.AppIntro:AppIntro:6.3.1")
+    implementation(libs.appintro)
 
     // OpenCV lib
-    implementation("com.quickbirdstudios:opencv-contrib:4.5.3.0")
+    implementation(libs.opencv.contrib)
 
     // Retrofit2 lib
     implementation(libs.retrofit)
@@ -133,7 +133,7 @@ dependencies {
     testImplementation(libs.androidx.paging.common.ktx)
 
     // firebase
-    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
-    implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-messaging")
+    implementation(libs.firebase.bom)
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.messaging)
 }

@@ -28,6 +28,7 @@ import com.exal.grocerease.view.activity.LandingActivity
 import com.exal.grocerease.view.adapter.MenuItem
 import com.exal.grocerease.view.adapter.MenuProfileAdapter
 import com.exal.grocerease.viewmodel.ProfileViewModel
+import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.DateFormatSymbols
 import javax.inject.Inject
@@ -146,6 +147,7 @@ class ProfileFragment : Fragment() {
                 }
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
+                    FirebaseMessaging.getInstance().deleteToken()
                     tokenManager.clearToken()
                     viewModel.clearDatabase()
                     requireActivity().finish()
