@@ -8,14 +8,8 @@ data class LogoutResponse(
 	val code: Int? = null,
 
 	@field:SerializedName("message")
-	val message: Message? = null,
+	val message: String? = null,
 
 	@field:SerializedName("status")
 	val status: Boolean? = null
-)
-
-data class Message(
-
-	@field:SerializedName("message")
-	val message: String? = null
 )
