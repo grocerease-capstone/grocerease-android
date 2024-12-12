@@ -24,10 +24,11 @@ import com.google.firebase.messaging.RemoteMessage
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
-    private val managerCompat = NotificationManagerCompat.from(this)
+    private lateinit var managerCompat: NotificationManagerCompat
 
     override fun onCreate() {
         super.onCreate()
+        managerCompat = NotificationManagerCompat.from(this)
         createNotificationChannel()
     }
 
