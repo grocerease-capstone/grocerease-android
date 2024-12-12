@@ -54,12 +54,14 @@ class ListRemoteMediator(
 
         try {
             val responseData = apiService.getExpenseList("Bearer: $token", type, page, state.config.pageSize)
-
+            Log.d("responseData message", "${responseData.message}")
+            if(responseData.message == "No lists found for this user"){
+                Log.d("Run Database Trans", "Deleting list from db")
+                database.listDao().clearByType(type)
+            }
             val endOfPaginationReached = page >= responseData.pagination?.totalPages!!
-            Log.d("End of pagination", "End of pagination reached: $endOfPaginationReached")
 
             val lists = responseData.data?.lists?.mapNotNull { list ->
-                Log.d("RemoteMediator", "Processing item: $list")
                 list?.let {
                     ListEntity(
                         id = it.id?.toString()
@@ -78,10 +80,10 @@ class ListRemoteMediator(
 
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
+
                     database.remoteKeysDao().clearRemoteKeys()
                     database.listDao().clearByType(type)
                 }
-
                 val prevKey = if (page == INITIAL_PAGE_INDEX) null else page - 1
                 val nextKey = if (endOfPaginationReached) null else page + 1
 
@@ -106,16 +108,12 @@ class ListRemoteMediator(
 
     private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ListEntity>): RemoteKeys? {
         return state.pages.lastOrNull()  { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { data ->
-            Log.d("statePages Last", state.pages.toString())
-            Log.d("data Last", data.toString())
             database.remoteKeysDao().getRemoteKeysById(data.id)
         }
     }
 
     private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ListEntity>): RemoteKeys? {
         return state.pages.firstOrNull() { it.data.isNotEmpty() }?.data?.firstOrNull()?.let { data ->
-            Log.d("statePages First", state.pages.toString())
-            Log.d("data First", data.toString())
             database.remoteKeysDao().getRemoteKeysById(data.id)
         }
     }
