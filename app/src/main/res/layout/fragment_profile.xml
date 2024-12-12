@@ -36,7 +36,7 @@
                 android:id="@+id/dateTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data from the last 4 weeks"
+                android:text="@string/data_from_the_last"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/calendarButton"
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="John Doe"
+                android:text="@string/username"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="johndoe@gmail.com"
+                android:text="@string/email"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/username"
                 app:layout_constraintStart_toStartOf="@+id/username"
@@ -126,7 +126,7 @@
                             android:textStyle="bold"
                             android:textSize="14sp"
                             android:gravity="center"
-                            android:text="Monthly Expense"/>
+                            android:text="@string/monthly_expense"/>
 
                     </androidx.cardview.widget.CardView>
 
@@ -134,9 +134,9 @@
                         android:id="@+id/expensesTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="test"
+                        android:text="@string/total_expense"
                         android:textStyle="bold"
-                        android:textSize="14sp"
+                        android:textSize="20sp"
                         android:gravity="center"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -152,16 +152,16 @@
                 android:layout_height="110dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:backgroundTint="@color/green"
                 app:cardCornerRadius="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/cardView3"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cardview1"
                 app:layout_constraintTop_toBottomOf="@+id/composeView">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="match_parent">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardViewTotalItem"
@@ -175,22 +175,24 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
                             android:gravity="center"
-                            android:text="Total Items"/>
+                            android:text="@string/total_items"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
                     </androidx.cardview.widget.CardView>
+
                     <TextView
                         android:id="@+id/totalItemsTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="test"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
                         android:gravity="center"
+                        android:text="@string/total_items"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -199,61 +201,11 @@
 
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView3"
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_marginTop="8dp"
-                android:backgroundTint="@color/green"
-                app:cardCornerRadius="20dp"
-                app:layout_constraintEnd_toEndOf="@+id/composeView"
-                app:layout_constraintStart_toEndOf="@+id/cardview2"
-                app:layout_constraintTop_toBottomOf="@+id/composeView">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cardViewTotalProduct"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:backgroundTint="@color/greenLight"
-                        app:cardCornerRadius="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
-                            android:gravity="center"
-                            android:text="Total Products"/>
-                    </androidx.cardview.widget.CardView>
-                    <TextView
-                        android:id="@+id/totalProduct"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="test"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        android:gravity="center"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/cardViewTotalProduct"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
             <ListView
                 android:id="@+id/listViewMenu"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
+                android:layout_marginTop="8dp"
                 android:divider="@android:color/transparent"
                 android:dividerHeight="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"

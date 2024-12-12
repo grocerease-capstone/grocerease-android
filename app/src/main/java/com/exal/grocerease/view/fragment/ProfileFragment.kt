@@ -21,6 +21,7 @@ import com.exal.grocerease.helper.MonthYearPickerDialog
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.compose.LineSample
 import com.exal.grocerease.helper.manager.TokenManager
+import com.exal.grocerease.helper.rupiahFormatter
 import com.exal.grocerease.view.activity.AccountSettingsActivity
 import com.exal.grocerease.view.activity.AppSettingsActivity
 import com.exal.grocerease.view.activity.LandingActivity
@@ -41,6 +42,8 @@ class ProfileFragment : Fragment() {
     private var usernameBinding: String? = "-"
     private var emailBinding: String? = "-"
     private var imageProfileBinding: String? = "-"
+    private var totalExpenseBinding: Int? = 0
+    private var totalItemsBinding: Int? = 0
 
     @Inject
     lateinit var tokenManager: TokenManager
@@ -103,6 +106,9 @@ class ProfileFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     viewModel.setChartData(resource.data?.data?.listsByWeek)
 
+                    totalExpenseBinding = resource.data?.data?.listsByWeek?.sumOf { it?.totalExpenses ?: 0 }
+                    totalItemsBinding = resource.data?.data?.listsByWeek?.sumOf { it?.totalItems ?: 0 }
+
                     usernameBinding = resource.data?.data?.userProfile?.username
                     emailBinding = resource.data?.data?.userProfile?.email
                     imageProfileBinding = resource.data?.data?.userProfile?.image
@@ -116,6 +122,12 @@ class ProfileFragment : Fragment() {
                                 .error(R.drawable.ic_close)
                         )
                         .into(binding.profileImage)
+
+                    binding.expensesTv.text = totalExpenseBinding?.let { rupiahFormatter(it) }
+                    binding.totalItemsTv.text = buildString {
+                        append(totalItemsBinding.toString())
+                        append(getString(R.string.items))
+                    }
                 }
                 is Resource.Error -> {
                     binding.progressBar.visibility = View.GONE
