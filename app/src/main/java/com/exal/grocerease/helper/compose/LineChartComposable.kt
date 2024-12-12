@@ -35,6 +35,7 @@ import ir.ehsannarmani.compose_charts.models.Line
 import ir.ehsannarmani.compose_charts.models.LineProperties
 import ir.ehsannarmani.compose_charts.models.PopupProperties
 import ir.ehsannarmani.compose_charts.models.StrokeStyle
+import java.text.DecimalFormat
 
 val gridProperties = GridProperties(
     xAxisProperties = GridProperties.AxisProperties(
@@ -138,8 +139,9 @@ fun LineSample(viewModel: ProfileViewModel) {
                         fontSize = 11.sp,
                         color = Color.White,
                     ),
-                    contentBuilder = {
-                        it.format(1) + " k"
+                    contentBuilder = { value ->
+                        val formatter = DecimalFormat("#,###")
+                        formatter.format(value)
                     },
                 ),
                 labelHelperProperties = LabelHelperProperties(
