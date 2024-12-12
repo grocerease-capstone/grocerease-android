@@ -13,13 +13,13 @@ import com.exal.grocerease.model.network.response.ProductItemsItem
 class DetailExpenseAdapter: ListAdapter<ProductItemsItem, DetailExpenseAdapter.ItemViewHolder>(DIFF_CALLBACK){
 
     private val categoryMapping = mapOf(
-        "0" to "Food",
-        "1" to "Beauty",
+        "0" to "Makanan",
+        "1" to "Kecantikan",
         "2" to "Home Living",
-        "3" to "Drink",
-        "4" to "Fresh Product",
-        "5" to "Health",
-        "6" to "Other"
+        "3" to "Minuman",
+        "4" to "Produk Segar",
+        "5" to "Kesehatan",
+        "6" to "Lainnya"
     )
 
     inner class ItemViewHolder(private val binding: ItemDetailListBinding) : RecyclerView.ViewHolder(binding.root) {

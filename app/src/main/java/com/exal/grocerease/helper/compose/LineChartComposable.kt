@@ -68,7 +68,7 @@ val labelProperties = LabelProperties(
         fontSize = 12.sp,
         color = Color.White,
     ),
-    labels = listOf("Week 1", "Week 2", "Week 3", "Week 4"),
+    labels = listOf("Minggu 1", "Minggu 2", "Minggu 3", "Minggu 4"),
 )
 
 @Composable
