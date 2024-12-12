@@ -31,14 +31,10 @@ class LoginActivity : AppCompatActivity() {
         //get fcm Token
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
-                Log.w("LoginActivity", "Fetching FCM registration token failed", task.exception)
                 return@OnCompleteListener
             }
 
             fcmToken = task.result
-            Log.d("MainActivity", "Token: $fcmToken")
-
-            Toast.makeText(baseContext, fcmToken, Toast.LENGTH_SHORT).show()
         })
 
         binding.noAccount.setOnClickListener {
