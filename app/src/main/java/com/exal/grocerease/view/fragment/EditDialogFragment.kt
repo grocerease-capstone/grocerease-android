@@ -1,6 +1,5 @@
 package com.exal.grocerease.view.fragment
 
-import android.R
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -22,13 +21,13 @@ class EditDialogFragment : DialogFragment() {
     private val binding get() = _binding!!
 
     private val categoryMapping = mapOf(
-        "0" to "Food",
-        "1" to "Beauty",
+        "0" to "Makanan",
+        "1" to "Kecantikan",
         "2" to "Home Living",
-        "3" to "Drink",
-        "4" to "Fresh Product",
-        "5" to "Health",
-        "6" to "Other"
+        "3" to "Minuman",
+        "4" to "Produk Segar",
+        "5" to "Kesehatan",
+        "6" to "Lainnya"
     )
 
     private val reverseCategoryMapping = categoryMapping.entries.associate { (key, value) -> value to key }
@@ -60,12 +59,11 @@ class EditDialogFragment : DialogFragment() {
         val categories = categoryMapping.values.toList()
         val adapter = ArrayAdapter(
             binding.textFieldCategory.context,
-            R.layout.simple_list_item_1,
+            android.R.layout.simple_list_item_1,
             categories
         )
         (binding.textFieldCategory.editText as? AutoCompleteTextView)?.setAdapter(adapter)
 
-        // Set initial data
         detailItemsItem?.let { item ->
             binding.textFieldName.editText?.setText(item.name)
             binding.textFieldPrice.editText?.setText(item.price)

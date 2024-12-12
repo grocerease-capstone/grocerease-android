@@ -23,13 +23,13 @@ class AddManualExpenseDialogFragment : DialogFragment() {
     private val binding get() = _binding!!
 
     private val categoryMapping = mapOf(
-        0 to "Food",
-        1 to "Beauty",
+        0 to "Makanan",
+        1 to "Kecantikan",
         2 to "Home Living",
-        3 to "Drink",
-        4 to "Fresh Product",
-        5 to "Health",
-        6 to "Other"
+        3 to "Minuman",
+        4 to "Produk Segar",
+        5 to "Kesehatan",
+        6 to "Lainnya"
     )
 
     private val reverseCategoryMapping = categoryMapping.entries.associate { (key, value) -> value to key }
@@ -79,19 +79,19 @@ class AddManualExpenseDialogFragment : DialogFragment() {
             val categoryKey = reverseCategoryMapping[selectedCategory]
 
             if (productName.isBlank()) {
-                binding.textFieldName.error = getString(com.exal.grocerease.R.string.name_cannot_blank)
+                binding.textFieldName.error = getString(R.string.name_cannot_blank)
                 return@setOnClickListener
             }
             if (productPrice == null) {
-                binding.textFieldPrice.error = getString(com.exal.grocerease.R.string.price_cannot_blank)
+                binding.textFieldPrice.error = getString(R.string.price_cannot_blank)
                 return@setOnClickListener
             }
             if (productAmount == null || productAmount <= 0) {
-                binding.textFieldQuantity.error = getString(com.exal.grocerease.R.string.quantity_cannot_blank)
+                binding.textFieldQuantity.error = getString(R.string.quantity_cannot_blank)
                 return@setOnClickListener
             }
             if (selectedCategory.isBlank() || reverseCategoryMapping[selectedCategory] == null) {
-                binding.textFieldCategory.error = getString(com.exal.grocerease.R.string.category_cannot_blank)
+                binding.textFieldCategory.error = getString(R.string.category_cannot_blank)
                 return@setOnClickListener
             }
 

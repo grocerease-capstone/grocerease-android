@@ -24,13 +24,13 @@ class AddManualEditDialogFragment : DialogFragment() {
     private val binding get() = _binding!!
 
     private val categoryMapping = mapOf(
-        0 to "Food",
-        1 to "Beauty",
+        0 to "Makanan",
+        1 to "Kecantikan",
         2 to "Home Living",
-        3 to "Drink",
-        4 to "Fresh Product",
-        5 to "Health",
-        6 to "Other"
+        3 to "Minuman",
+        4 to "Produk Segar",
+        5 to "Kesehatan",
+        6 to "Lainnya"
     )
 
     private val reverseCategoryMapping = categoryMapping.entries.associate { (key, value) -> value to key }
