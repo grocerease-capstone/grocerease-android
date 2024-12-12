@@ -11,13 +11,19 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.exal.grocerease.databinding.ActivityLoginBinding
 import com.exal.grocerease.helper.Resource
+import com.exal.grocerease.helper.manager.EmailManager
+import com.exal.grocerease.helper.manager.IntroManager
 import com.exal.grocerease.viewmodel.LoginViewModel
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
+    @Inject
+    lateinit var emailManager: EmailManager
+
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
 
@@ -57,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
                 }
                 is Resource.Success -> {
                     resetUIState()
+                    emailManager.saveEmail(binding.textFieldEmail.editText?.text.toString())
                     binding.progressBar.visibility = View.GONE
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)

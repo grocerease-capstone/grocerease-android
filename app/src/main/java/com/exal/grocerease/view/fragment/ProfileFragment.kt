@@ -20,6 +20,7 @@ import com.exal.grocerease.databinding.FragmentProfileBinding
 import com.exal.grocerease.helper.MonthYearPickerDialog
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.compose.LineSample
+import com.exal.grocerease.helper.manager.EmailManager
 import com.exal.grocerease.helper.manager.TokenManager
 import com.exal.grocerease.helper.rupiahFormatter
 import com.exal.grocerease.view.activity.AccountSettingsActivity
@@ -34,6 +35,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
+    @Inject
+    lateinit var emailManager: EmailManager
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
@@ -147,6 +150,7 @@ class ProfileFragment : Fragment() {
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
                     tokenManager.clearToken()
+                    emailManager.clearEmail()
                     viewModel.clearDatabase()
                     requireActivity().finish()
                     val intent = Intent(requireContext(), LandingActivity::class.java)
