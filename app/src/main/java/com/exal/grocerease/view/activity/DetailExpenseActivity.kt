@@ -12,13 +12,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.exal.grocerease.R
 import com.exal.grocerease.databinding.ActivityDetailExpenseBinding
 import com.exal.grocerease.helper.DateFormatter
 import com.exal.grocerease.helper.Resource
 import com.exal.grocerease.helper.rupiahFormatter
 import com.exal.grocerease.model.network.response.PostListResponse
-import com.exal.grocerease.model.network.response.UpdateListResponse
 import com.exal.grocerease.view.adapter.DetailExpenseAdapter
 import com.exal.grocerease.view.fragment.ShareDialogFragment
 import com.exal.grocerease.viewmodel.DetailExpenseViewModel
@@ -60,6 +61,7 @@ class DetailExpenseActivity : AppCompatActivity() {
             binding.cardImage.visibility = View.GONE
             binding.shareBtn.visibility = View.GONE
         }
+
         binding.activityTxt.text = titleText
 
         binding.dateTv.text = DateFormatter.localizeDate(expenseDate ?: "")
@@ -175,6 +177,14 @@ class DetailExpenseActivity : AppCompatActivity() {
                 totalPrice += item?.totalPrice?.toDoubleOrNull()?.toInt() ?: 0
             }
             binding.totalPriceTv.text = "Total : " + rupiahFormatter(totalPrice)
+
+            Glide.with(this)
+                .load(it.data?.data?.detailList?.thumbnailImage)
+                .apply(
+                    RequestOptions.placeholderOf(R.drawable.avatar)
+                        .error(R.drawable.ic_close)
+                )
+                .into(binding.imageView)
         }
     }
 
