@@ -36,6 +36,7 @@ class DetailExpenseActivity : AppCompatActivity() {
 
     private lateinit var expenseTitle: String
     private var listId: Int = -1
+    private var typeActivity: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +54,7 @@ class DetailExpenseActivity : AppCompatActivity() {
         Log.d("DetailExpenseActivity", "Expense ID: $listId, Title: $expenseTitle")
         val expenseDate = intent.getStringExtra(EXTRA_EXPENSE_DATE).toString()
         val expenseType = intent.getStringExtra(EXTRA_EXPENSE_TYPE)
+        typeActivity = intent.getStringExtra(EXTRA_TYPE_ACTIVITY)
 
         var titleText = "Detail Expense"
 
@@ -60,6 +62,13 @@ class DetailExpenseActivity : AppCompatActivity() {
             titleText = "Detail Plan"
             binding.cardImage.visibility = View.GONE
             binding.shareBtn.visibility = View.GONE
+        }
+
+        if (typeActivity == "Share") {
+            titleText = "Detail Share"
+            binding.editBtn.visibility = View.GONE
+            binding.shareBtn.visibility = View.GONE
+            binding.deleteBtn.visibility = View.GONE
         }
 
         binding.activityTxt.text = titleText
@@ -193,5 +202,6 @@ class DetailExpenseActivity : AppCompatActivity() {
         const val EXTRA_EXPENSE_TITLE = "extra_expense_title"
         const val EXTRA_EXPENSE_DATE = "extra_expense_date"
         const val EXTRA_EXPENSE_TYPE = "extra_expense_type"
+        const val EXTRA_TYPE_ACTIVITY = "extra_type_activity"
     }
 }

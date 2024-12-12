@@ -21,6 +21,9 @@ class NotificationViewModel @Inject constructor(private val dataRepository: Data
     private val _acceptNotification = MutableLiveData<Resource<UpdateListResponse>>()
     val acceptNotification: LiveData<Resource<UpdateListResponse>> = _acceptNotification
 
+    private val _declineNotification = MutableLiveData<Resource<UpdateListResponse>>()
+    val declineNotification: LiveData<Resource<UpdateListResponse>> = _declineNotification
+
     fun getNotificationList() {
         viewModelScope.launch {
             dataRepository.getSharedList().collect { resource ->
@@ -40,7 +43,7 @@ class NotificationViewModel @Inject constructor(private val dataRepository: Data
     fun declineNotification(id: Int) {
         viewModelScope.launch {
             dataRepository.declineNotification(id).collect { resource ->
-                _acceptNotification.postValue(resource)
+                _declineNotification.postValue(resource)
             }
         }
     }

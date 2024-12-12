@@ -16,17 +16,23 @@ import androidx.lifecycle.lifecycleScope
 import com.exal.grocerease.R
 import com.exal.grocerease.databinding.AddManualDialogFragmentBinding
 import com.exal.grocerease.databinding.FragmentShareDialogBinding
+import com.exal.grocerease.helper.manager.EmailManager
 import com.exal.grocerease.helper.rupiahFormatter
 import com.exal.grocerease.model.network.response.Detail
 import com.exal.grocerease.model.network.response.ProductsItem
 import com.exal.grocerease.view.activity.CreateListActivity
 import com.exal.grocerease.view.activity.DetailExpenseActivity
 import com.exal.grocerease.viewmodel.DetailExpenseViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ShareDialogFragment(private val id: Int) : DialogFragment() {
+    @Inject
+    lateinit var emailManager: EmailManager
 
     private var _binding: FragmentShareDialogBinding? = null
     private val binding get() = _binding!!
@@ -54,6 +60,19 @@ class ShareDialogFragment(private val id: Int) : DialogFragment() {
 
         binding.addButton.setOnClickListener {
             val email = binding.textFieldName.editText?.text.toString()
+            val emailCurrent = emailManager.getEmail()
+
+            if (email.isBlank()) {
+                binding.textFieldName.error = "Email is required"
+                return@setOnClickListener
+            } else if (email == emailCurrent) {
+                binding.textFieldName.error = "Email cannot be the same as the current user"
+                return@setOnClickListener
+            } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.textFieldName.error = "Invalid email format"
+                return@setOnClickListener
+            }
+
             viewLifecycleOwner.lifecycleScope.launch {
                 Log.d("ShareDialogFragment", "Email: $email, ID: $id")
                 (activity as? DetailExpenseActivity)?.viewModel?.shareList(id, email)?.collect{ resource ->

@@ -74,10 +74,12 @@ class ShareListActivity : AppCompatActivity() {
 
     private fun navigateToDetail(id: Int, title: String, date: String, typeDetail: String) {
         val intent = Intent(this, DetailExpenseActivity::class.java)
+        val typeActivity = "Share"
         intent.putExtra(DetailExpenseActivity.EXTRA_EXPENSE_ID, id)
         intent.putExtra(DetailExpenseActivity.EXTRA_EXPENSE_TITLE, title)
         intent.putExtra(DetailExpenseActivity.EXTRA_EXPENSE_DATE, date)
         intent.putExtra(DetailExpenseActivity.EXTRA_EXPENSE_TYPE, typeDetail)
+        intent.putExtra(DetailExpenseActivity.EXTRA_TYPE_ACTIVITY, typeActivity)
         Log.d("HomeFragment", "Expense ID: $id, Title: $title, Date: $date, Type: $typeDetail")
         startActivity(intent)
     }
