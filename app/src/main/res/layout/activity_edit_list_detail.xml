@@ -41,39 +41,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_bottom_app_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:contentDescription="@string/fab_bottom_app_bar"
-        android:focusable="true"
-        app:backgroundTint="@color/Blue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlayExtended"
-        app:srcCompat="@drawable/ic_add"
-        app:tint="@color/white" />
-
-
-
     <Button
         android:id="@+id/saveBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/Blue"
         android:text="@string/save_changes"
         android:textColor="@color/white"
         app:cornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/fab_bottom_app_bar"
-        app:layout_constraintEnd_toStartOf="@+id/fab_bottom_app_bar"
+        app:layout_constraintBottom_toBottomOf="@+id/card_create_list"
+        app:layout_constraintEnd_toEndOf="@+id/card_create_list"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fab_bottom_app_bar" />
+        app:layout_constraintTop_toTopOf="@+id/card_create_list" />
 
     <View
         android:id="@+id/bottom_app_bar"
