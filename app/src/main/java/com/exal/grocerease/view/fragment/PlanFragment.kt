@@ -60,6 +60,7 @@ class PlanFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             planViewModel.toastEvent.collect { message ->
                 Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                binding.resetBtn.visibility = View.GONE
             }
         }
 
@@ -72,6 +73,7 @@ class PlanFragment : Fragment() {
                         pagingAdapter.submitData(lifecycle, pagingData)
                     }
                 }
+                binding.resetBtn.visibility = View.VISIBLE
             }.show()
         }
 

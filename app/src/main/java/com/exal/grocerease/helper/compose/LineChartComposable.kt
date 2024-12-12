@@ -81,7 +81,7 @@ fun LineSample(viewModel: ProfileViewModel) {
 
     val data = listOf(
         Line(
-            label = "Windows",
+            label = "Keuangan",
             values = cleanedChartValue,
             color = SolidColor(Color(0xFF2B8130)),
             firstGradientFillColor = Color(0xFF66BB6A).copy(alpha = .4f),
